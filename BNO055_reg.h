@@ -1,20 +1,5 @@
 #pragma once
 
-// PAGE 1
-#define ACC_HG_THRES 0x14
-#define ACC_NM_THRES 0x15
-#define ACC_NM_SET 0x16
-#define GYR_INT_SET 0x17
-#define GYR_HR_X_SET 0x18
-#define GYR_DUR_X 0x19
-#define GYR_HR_Y_SET 0x1A
-#define GYR_DUR_Y 0x1B
-#define GYR_HR_Z_SET 0x1C
-#define GYR_DUR_Z 0x1D
-#define GYR_AM_THRES 0x1E
-#define GYR_AM_SET 0x1F
-#define BNO_UNIQUE_ID 0x50
-
 // PAGE 0
 #define CHIP_ID 0x00
 #define ACC_ID 0x01
@@ -92,3 +77,18 @@
 
 #define ACC_RADIUS 0x68
 #define MAG_RADIUS 0x6A
+
+// PAGE 1
+#define ACC_HG_THRES 0x14
+#define ACC_NM_THRES 0x15
+#define ACC_NM_SET 0x16
+#define GYR_INT_SET 0x17
+#define GYR_HR_X_SET 0x18
+#define GYR_DUR_X 0x19
+#define GYR_HR_Y_SET 0x1A
+#define GYR_DUR_Y 0x1B
+#define GYR_HR_Z_SET 0x1C
+#define GYR_DUR_Z 0x1D
+#define GYR_AM_THRES 0x1E
+#define GYR_AM_SET 0x1F
+#define BNO_UNIQUE_ID 0x50
