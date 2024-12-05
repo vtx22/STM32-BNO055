@@ -40,6 +40,21 @@ uint8_t BNO055::chip_id()
     return read_reg(CHIP_ID);
 }
 
+uint8_t BNO055::acc_chip_id()
+{
+    return read_reg(ACC_ID);
+}
+
+uint8_t BNO055::mag_chip_id()
+{
+    return read_reg(MAG_ID);
+}
+
+uint8_t BNO055::gyro_chip_id()
+{
+    return read_reg(GYR_ID);
+}
+
 /*
 Get the measured temperature from TEMP_SOURCE in Degrees Celsius
 

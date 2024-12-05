@@ -31,6 +31,9 @@ public:
 
     uint16_t unique_id();
     uint8_t chip_id();
+    uint8_t acc_chip_id();
+    uint8_t mag_chip_id();
+    uint8_t gyro_chip_id();
 
     int8_t temperature_c();
     int16_t temperature_f();
