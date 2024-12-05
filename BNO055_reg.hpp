@@ -129,6 +129,32 @@ enum BNO_POWER_MODE
     NORMAL,
     LOW_POWER,
     SUSPEND,
+};
+
+enum BNO_TEMP_UNIT
+{
+    CELSIUS,
+    FAHRENHEIT,
+};
+
+enum BNO_ACC_UNIT
+{
+    METERS_PER_SECOND2,
+    MILLI_G,
+};
+
+enum BNO_ANG_RATE_UNIT
+{
+    DEG_PER_SECOND,
+    RAD_PER_SECOND,
+};
+
+enum BNO_ANG_UNIT
+{
+    DEG,
+    RAD,
+};
+
 enum BNO_TEMP_SOURCE
 {
     TEMP_ACCELEROMETER,

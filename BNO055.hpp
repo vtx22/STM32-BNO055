@@ -38,6 +38,10 @@ public:
     void set_power_mode(BNO_POWER_MODE mode);
     uint8_t get_system_status();
 
+    void set_acceleration_unit(BNO_ACC_UNIT unit);
+    void set_angular_rate_unit(BNO_ANG_RATE_UNIT unit);
+    void set_angle_unit(BNO_ANG_UNIT unit);
+    void set_temperature_unit(BNO_TEMP_UNIT unit);
     void set_temperature_source(BNO_TEMP_SOURCE source);
 
 private:
