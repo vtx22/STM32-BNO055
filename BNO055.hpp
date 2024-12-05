@@ -41,4 +41,5 @@ private:
 
     I2C_HandleTypeDef *_hi2c = nullptr;
     uint8_t _address;
+    bool _page = false;
 };
