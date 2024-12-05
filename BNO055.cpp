@@ -223,3 +223,9 @@ void BNO055::set_reg_bit(const bno_reg_t &reg, uint8_t n, bool value)
     current = (current & ~(1 << n)) | ((uint8_t)value << n);
     return write_reg(reg, current);
 }
+
+bool BNO055::get_reg_bit(const bno_reg_t &reg, uint8_t n)
+{
+    uint16_t current = read_reg(reg);
+    return (current >> n) & 0x01;
+}
