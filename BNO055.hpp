@@ -35,6 +35,8 @@ public:
     uint8_t mag_chip_id();
     uint8_t gyro_chip_id();
 
+    uint16_t software_revision();
+
     int8_t temperature_c();
     int16_t temperature_f();
 

@@ -56,6 +56,17 @@ uint8_t BNO055::gyro_chip_id()
 }
 
 /*
+Get the current device software revision as a fixed point number
+where the second byte represents the integer after the decimal point.
+
+@return The software revision in fixed point format
+*/
+uint16_t BNO055::software_revision()
+{
+    return read_reg(SW_REV_ID);
+}
+
+/*
 Get the measured temperature from TEMP_SOURCE in Degrees Celsius
 
 Note: The returned value is only correct if the TEMP_UNIT is
