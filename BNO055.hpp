@@ -29,7 +29,7 @@ class BNO055
 public:
     BNO055(I2C_HandleTypeDef *hi2c, uint8_t address);
 
-    uint16_t device_id();
+    uint16_t unique_id();
     uint8_t chip_id();
 
     int8_t temperature_c();

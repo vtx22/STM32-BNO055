@@ -30,7 +30,7 @@ bool BNO055::read_page_id()
     return (bool)read_reg(PAGE_ID);
 }
 
-uint16_t BNO055::device_id()
+uint16_t BNO055::unique_id()
 {
     return read_reg(BNO_UNIQUE_ID);
 }
