@@ -40,6 +40,17 @@ uint8_t BNO055::chip_id()
     return read_reg(CHIP_ID);
 }
 
+
+void BNO055::set_operation_mode(BNO_OPERATION_MODE mode)
+{
+    return write_reg(OPR_MODE, mode);
+}
+
+void BNO055::set_power_mode(BNO_POWER_MODE mode)
+{
+    return write_reg(PWR_MODE, mode);
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);

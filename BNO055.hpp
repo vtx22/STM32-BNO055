@@ -32,6 +32,10 @@ public:
     uint16_t device_id();
     uint8_t chip_id();
 
+
+    void set_operation_mode(BNO_OPERATION_MODE mode);
+    void set_power_mode(BNO_POWER_MODE mode);
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
