@@ -32,7 +32,8 @@ public:
     uint16_t device_id();
     uint8_t chip_id();
 
-    int8_t temperature();
+    int8_t temperature_c();
+    int16_t temperature_f();
 
     void set_operation_mode(BNO_OPERATION_MODE mode);
     void set_power_mode(BNO_POWER_MODE mode);
@@ -59,4 +60,6 @@ private:
     I2C_HandleTypeDef *_hi2c = nullptr;
     uint8_t _address;
     bool _page = false;
+
+    BNO_TEMP_UNIT _temp_unit = CELSIUS;
 };

@@ -40,9 +40,28 @@ uint8_t BNO055::chip_id()
     return read_reg(CHIP_ID);
 }
 
-int8_t BNO055::temperature()
+/*
+Get the measured temperature from TEMP_SOURCE in Degrees Celsius
+
+Note: The returned value is only correct if the TEMP_UNIT is
+configured to be CELSIUS. See set_temperature_unit
+@return Temperature in Degrees Celsius
+*/
+int8_t BNO055::temperature_c()
 {
     return (int8_t)read_reg(BNO_TEMP);
+}
+
+/*
+Get the measured temperature from TEMP_SOURCE in Degree Fahrenheit
+
+Note: The returned value is only correct if the TEMP_UNIT is
+configured to be FAHRENHEIT. See set_temperature_unit
+@return Temperature in Degrees Fahrenheit
+*/
+int16_t BNO055::temperature_f()
+{
+    return ((int8_t)read_reg(BNO_TEMP)) * 2;
 }
 
 /*
