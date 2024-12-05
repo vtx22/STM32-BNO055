@@ -60,6 +60,11 @@ uint8_t BNO055::get_system_status()
     return read_reg(SYS_STATUS);
 }
 
+void BNO055::set_temperature_source(BNO_TEMP_SOURCE source)
+{
+    return set_reg_bit(TEMP_SOURCE, 0, source);
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);

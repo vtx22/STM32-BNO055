@@ -38,6 +38,8 @@ public:
     void set_power_mode(BNO_POWER_MODE mode);
     uint8_t get_system_status();
 
+    void set_temperature_source(BNO_TEMP_SOURCE source);
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
