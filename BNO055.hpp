@@ -47,6 +47,7 @@ private:
 
     uint16_t read_reg(const bno_reg_t &reg);
     void write_reg(const bno_reg_t &reg, uint16_t value);
+    void set_reg_bit(const bno_reg_t &reg, uint8_t n, bool value);
 
     I2C_HandleTypeDef *_hi2c = nullptr;
     uint8_t _address;

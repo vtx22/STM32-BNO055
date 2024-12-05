@@ -83,3 +83,10 @@ void BNO055::write_reg(const bno_reg_t &reg, uint16_t value)
 
     return write_i2c_reg_16(_hi2c, _address, reg.address, value);
 }
+
+void BNO055::set_reg_bit(const bno_reg_t &reg, uint8_t n, bool value)
+{
+    uint16_t current = read_reg(reg);
+    current = (current & ~(1 << n)) | ((uint8_t)value << n);
+    return write_reg(reg, current);
+}
