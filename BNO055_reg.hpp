@@ -9,13 +9,14 @@ struct bno_reg_t
     bool page = 0;
 };
 
+constexpr bno_reg_t PAGE_ID = {0x07, 1, 0};
+
 // PAGE 0 Registers
 constexpr bno_reg_t CHIP_ID = {0x00, 1, 0};
 constexpr bno_reg_t ACC_ID = {0x01, 1, 0};
 constexpr bno_reg_t MAG_ID = {0x02, 1, 0};
 constexpr bno_reg_t GYR_ID = {0x03, 1, 0};
 constexpr bno_reg_t SW_REV_ID = {0x04, 2, 0};
-constexpr bno_reg_t PAGE_ID = {0x07, 1, 0};
 
 constexpr bno_reg_t ACC_DATA_X = {0x08, 2, 0};
 constexpr bno_reg_t ACC_DATA_Y = {0x0A, 2, 0};
