@@ -40,9 +40,9 @@ uint8_t BNO055::chip_id()
     return read_reg(CHIP_ID);
 }
 
-uint8_t BNO055::temperature()
+int8_t BNO055::temperature()
 {
-    return read_reg(BNO_TEMP);
+    return (int8_t)read_reg(BNO_TEMP);
 }
 
 void BNO055::set_operation_mode(BNO_OPERATION_MODE mode)

@@ -32,7 +32,7 @@ public:
     uint16_t device_id();
     uint8_t chip_id();
 
-    uint8_t temperature();
+    int8_t temperature();
 
     void set_operation_mode(BNO_OPERATION_MODE mode);
     void set_power_mode(BNO_POWER_MODE mode);
