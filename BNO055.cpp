@@ -219,6 +219,28 @@ void BNO055::set_temperature_source(BNO_TEMP_SOURCE source)
     return set_reg_bit(TEMP_SOURCE, 0, source);
 }
 
+float BNO055::get_acceleration_x()
+{
+    int16_t raw = read_reg(ACC_DATA_X);
+
+    return (_unit_config.acc == MILLI_G) ? raw : raw / 100.f;
+}
+
+float BNO055::get_acceleration_y()
+{
+    int16_t raw = read_reg(ACC_DATA_Y);
+
+    return (_unit_config.acc == MILLI_G) ? raw : raw / 100.f;
+}
+
+float BNO055::get_acceleration_z()
+{
+    int16_t raw = read_reg(ACC_DATA_Z);
+
+    return (_unit_config.acc == MILLI_G) ? raw : raw / 100.f;
+}
+
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);

@@ -53,6 +53,11 @@ public:
     bool set_temperature_unit(BNO_TEMP_UNIT unit);
     void set_temperature_source(BNO_TEMP_SOURCE source);
 
+    float get_acceleration_x();
+    float get_acceleration_y();
+    float get_acceleration_z();
+    float get_acceleration();
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
