@@ -73,6 +73,17 @@ uint8_t BNO055::get_system_status()
 }
 
 /*
+Specify the output orientation format
+
+Note: Changes only take effect when the sensor is in CONFIGMODE
+@param mode Orientation output format, see BNO_ORI_FORMAT
+*/
+void BNO055::set_orientation_format(BNO_ORI_FORMAT format)
+{
+    return set_reg_bit(UNIT_SEL, 7, format);
+}
+
+/*
 Specify the acceleration output unit
 
 Note: Changes only take effect when the sensor is in CONFIGMODE

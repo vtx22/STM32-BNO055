@@ -131,6 +131,12 @@ enum BNO_POWER_MODE
     SUSPEND,
 };
 
+enum BNO_ORI_FORMAT
+{
+    WINDOWS,
+    ANDROID,
+};
+
 enum BNO_TEMP_UNIT
 {
     CELSIUS,
