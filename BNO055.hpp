@@ -27,7 +27,7 @@
 class BNO055
 {
 public:
-    BNO055(I2C_HandleTypeDef *hi2c);
+    BNO055(I2C_HandleTypeDef *hi2c, uint8_t address);
 
 private:
     void set_page_id(bool page);
