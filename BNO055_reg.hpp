@@ -105,4 +105,4 @@ constexpr bno_reg_t GYR_HR_Z_SET = {0x1C, 1, 1};
 constexpr bno_reg_t GYR_DUR_Z = {0x1D, 1, 1};
 constexpr bno_reg_t GYR_AM_THRES = {0x1E, 1, 1};
 constexpr bno_reg_t GYR_AM_SET = {0x1F, 1, 1};
-constexpr bno_reg_t BNO_UNIQUE_ID = {0x50, 1, 1};
+constexpr bno_reg_t BNO_UNIQUE_ID = {0x50, 2, 1};
