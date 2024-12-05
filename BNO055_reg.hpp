@@ -81,6 +81,17 @@ constexpr bno_reg_t ACC_RADIUS = {0x68, 2, 0};
 constexpr bno_reg_t MAG_RADIUS = {0x6A, 2, 0};
 
 // PAGE 1 Registers
+constexpr bno_reg_t ACC_CONFIG = {0x08, 1, 1};
+constexpr bno_reg_t MAG_CONFIG = {0x09, 1, 1};
+constexpr bno_reg_t GYR_CONFIG_0 = {0x0A, 1, 1};
+constexpr bno_reg_t GYR_CONFIG_1 = {0x0B, 1, 1};
+constexpr bno_reg_t ACC_SLEEP_CONFIG = {0x0C, 1, 1};
+constexpr bno_reg_t GYR_SLEEP_CONFIG = {0x0D, 1, 1};
+constexpr bno_reg_t INT_MSK = {0x0F, 1, 1};
+constexpr bno_reg_t INT_EN = {0x10, 1, 1};
+constexpr bno_reg_t ACC_AM_THRES = {0x11, 1, 1};
+constexpr bno_reg_t ACC_INT_SETTINGS = {0x12, 1, 1};
+constexpr bno_reg_t ACC_HG_DURATION = {0x13, 1, 1};
 constexpr bno_reg_t ACC_HG_THRES = {0x14, 1, 1};
 constexpr bno_reg_t ACC_NM_THRES = {0x15, 1, 1};
 constexpr bno_reg_t ACC_NM_SET = {0x16, 1, 1};
