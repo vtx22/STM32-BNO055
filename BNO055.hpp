@@ -1,5 +1,7 @@
 #pragma once
 
+#include "BNO055_reg.hpp"
+
 #include <cstdint>
 #include "I2C.h"
 
