@@ -29,6 +29,9 @@ class BNO055
 public:
     BNO055(I2C_HandleTypeDef *hi2c, uint8_t address);
 
+    uint16_t device_id();
+    uint8_t chip_id();
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);

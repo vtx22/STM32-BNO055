@@ -29,6 +29,17 @@ bool BNO055::read_page_id()
 {
     return (bool)read_reg(PAGE_ID);
 }
+
+uint16_t BNO055::device_id()
+{
+    return read_reg(BNO_UNIQUE_ID);
+}
+
+uint8_t BNO055::chip_id()
+{
+    return read_reg(CHIP_ID);
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);
