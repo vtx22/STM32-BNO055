@@ -128,6 +128,15 @@ uint8_t BNO055::get_system_status()
 }
 
 /*
+Get the BNO system error code byte
+@return Current error code byte
+*/
+uint8_t BNO055::get_system_error()
+{
+    return read_reg(SYS_ERR);
+}
+
+/*
 Specify the output orientation format
 
 Note: Changes only take effect when the sensor is in CONFIGMODE

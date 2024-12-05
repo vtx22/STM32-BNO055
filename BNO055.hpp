@@ -43,7 +43,9 @@ public:
 
     void set_operation_mode(BNO_OPERATION_MODE mode);
     void set_power_mode(BNO_POWER_MODE mode);
+
     uint8_t get_system_status();
+    uint8_t get_system_error();
 
     void set_orientation_format(BNO_ORI_FORMAT format);
     bool set_acceleration_unit(BNO_ACC_UNIT unit);
