@@ -30,6 +30,8 @@ public:
     BNO055(I2C_HandleTypeDef *hi2c);
 
 private:
+    uint16_t read_reg(const bno_reg_t &reg);
+    void write_reg(const bno_reg_t &reg, uint16_t value);
     I2C_HandleTypeDef *_hi2c = nullptr;
     uint8_t _address;
 };
