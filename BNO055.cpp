@@ -140,6 +140,7 @@ Specify the acceleration output unit
 
 Note: Changes only take effect when the sensor is in CONFIGMODE
 @param unit Acceleration unit, see BNO_ACC_UNIT
+@return True if register update was successful
 */
 bool BNO055::set_acceleration_unit(BNO_ACC_UNIT unit)
 {
@@ -151,6 +152,7 @@ Specify the angular rate output unit
 
 Note: Changes only take effect when the sensor is in CONFIGMODE
 @param unit Angular rate unit, see BNO_ANG_RATE_UNIT
+@return True if register update was successful
 */
 bool BNO055::set_angular_rate_unit(BNO_ANG_RATE_UNIT unit)
 {
@@ -162,6 +164,7 @@ Specify the angle output unit
 
 Note: Changes only take effect when the sensor is in CONFIGMODE
 @param unit Angle unit, see BNO_ANG_UNIT
+@return True if register update was successful
 */
 bool BNO055::set_angle_unit(BNO_ANG_UNIT unit)
 {
@@ -173,6 +176,7 @@ Specify the temperature output unit
 
 Note: Changes only take effect when the sensor is in CONFIGMODE
 @param unit Temperature unit, see BNO_TEMP_UNIT
+@return True if register update was successful
 */
 bool BNO055::set_temperature_unit(BNO_TEMP_UNIT unit)
 {
@@ -184,6 +188,7 @@ Specify from which sensor temperature readings are taken
 
 Note: Changes only take effect when the sensor is in CONFIGMODE
 @param source Temperature source, see BNO_TEMP_SOURCE
+@return True if register update was successful
 */
 void BNO055::set_temperature_source(BNO_TEMP_SOURCE source)
 {
