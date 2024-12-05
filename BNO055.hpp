@@ -46,10 +46,10 @@ public:
     uint8_t get_system_status();
 
     void set_orientation_format(BNO_ORI_FORMAT format);
-    void set_acceleration_unit(BNO_ACC_UNIT unit);
-    void set_angular_rate_unit(BNO_ANG_RATE_UNIT unit);
-    void set_angle_unit(BNO_ANG_UNIT unit);
-    void set_temperature_unit(BNO_TEMP_UNIT unit);
+    bool set_acceleration_unit(BNO_ACC_UNIT unit);
+    bool set_angular_rate_unit(BNO_ANG_RATE_UNIT unit);
+    bool set_angle_unit(BNO_ANG_UNIT unit);
+    bool set_temperature_unit(BNO_TEMP_UNIT unit);
     void set_temperature_source(BNO_TEMP_SOURCE source);
 
 private:
@@ -68,5 +68,5 @@ private:
     uint8_t _address;
     bool _page = false;
 
-    BNO_TEMP_UNIT _temp_unit = CELSIUS;
+    BNO_UNIT_CONFIG _unit_config;
 };
