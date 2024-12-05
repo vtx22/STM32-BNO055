@@ -67,6 +67,16 @@ uint16_t BNO055::software_revision()
 }
 
 /*
+Get the BNO bootloader version
+
+@return Bootloader version as integer
+*/
+uint8_t BNO055::bootloader_version()
+{
+    return read_reg(BOOTL_VER);
+}
+
+/*
 Get the measured temperature from TEMP_SOURCE in Degrees Celsius
 
 Note: The returned value is only correct if the TEMP_UNIT is

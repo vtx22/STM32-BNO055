@@ -36,6 +36,7 @@ public:
     uint8_t gyro_chip_id();
 
     uint16_t software_revision();
+    uint8_t bootloader_version();
 
     int8_t temperature_c();
     int16_t temperature_f();
