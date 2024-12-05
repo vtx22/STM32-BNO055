@@ -35,7 +35,7 @@ uint16_t BNO055::unique_id()
     return read_reg(BNO_UNIQUE_ID);
 }
 
-uint8_t BNO055::chip_id()
+uint8_t BNO055::bno_chip_id()
 {
     return read_reg(CHIP_ID);
 }

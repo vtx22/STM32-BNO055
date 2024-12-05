@@ -30,7 +30,7 @@ public:
     BNO055(I2C_HandleTypeDef *hi2c, uint8_t address);
 
     uint16_t unique_id();
-    uint8_t chip_id();
+    uint8_t bno_chip_id();
     uint8_t acc_chip_id();
     uint8_t mag_chip_id();
     uint8_t gyro_chip_id();
