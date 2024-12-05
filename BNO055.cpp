@@ -77,27 +77,15 @@ uint8_t BNO055::bootloader_version()
 }
 
 /*
-Get the measured temperature from TEMP_SOURCE in Degrees Celsius
+Get the measured temperature from TEMP_SOURCE
 
-Note: The returned value is only correct if the TEMP_UNIT is
-configured to be CELSIUS. See set_temperature_unit
-@return Temperature in Degrees Celsius
+@return Temperature in degrees celsius or fahrenheit based on selected TEMP_UNIT
 */
-int8_t BNO055::temperature_c()
+int16_t BNO055::temperature()
 {
-    return (int8_t)read_reg(BNO_TEMP);
-}
+    int16_t temp = read_reg(BNO_TEMP);
 
-/*
-Get the measured temperature from TEMP_SOURCE in Degree Fahrenheit
-
-Note: The returned value is only correct if the TEMP_UNIT is
-configured to be FAHRENHEIT. See set_temperature_unit
-@return Temperature in Degrees Fahrenheit
-*/
-int16_t BNO055::temperature_f()
-{
-    return ((int8_t)read_reg(BNO_TEMP)) * 2;
+    return (_unit_config.temp == CELSIUS) ? temp : temp * 2;
 }
 
 /*

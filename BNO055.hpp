@@ -38,8 +38,7 @@ public:
     uint16_t software_revision();
     uint8_t bootloader_version();
 
-    int8_t temperature_c();
-    int16_t temperature_f();
+    int16_t temperature();
 
     void set_operation_mode(BNO_OPERATION_MODE mode);
     void set_power_mode(BNO_POWER_MODE mode);
