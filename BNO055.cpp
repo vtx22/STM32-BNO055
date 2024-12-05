@@ -143,15 +143,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_acceleration_unit(BNO_ACC_UNIT unit)
 {
-    set_reg_bit(UNIT_SEL, 0, unit);
-
-    if (get_reg_bit(UNIT_SEL, 0) == (bool)unit)
-    {
-        _unit_config.acc = unit;
-        return true;
-    }
-
-    return false;
+    return set_reg_bit_checked(UNIT_SEL, 0, unit);
 }
 
 /*
@@ -162,15 +154,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_angular_rate_unit(BNO_ANG_RATE_UNIT unit)
 {
-    set_reg_bit(UNIT_SEL, 1, unit);
-
-    if (get_reg_bit(UNIT_SEL, 1) == (bool)unit)
-    {
-        _unit_config.angle_rate = unit;
-        return true;
-    }
-
-    return false;
+    return set_reg_bit_checked(UNIT_SEL, 1, unit);
 }
 
 /*
@@ -181,15 +165,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_angle_unit(BNO_ANG_UNIT unit)
 {
-    set_reg_bit(UNIT_SEL, 2, unit);
-
-    if (get_reg_bit(UNIT_SEL, 2) == (bool)unit)
-    {
-        _unit_config.angle = unit;
-        return true;
-    }
-
-    return false;
+    return set_reg_bit_checked(UNIT_SEL, 2, unit);
 }
 
 /*
@@ -200,15 +176,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_temperature_unit(BNO_TEMP_UNIT unit)
 {
-    set_reg_bit(UNIT_SEL, 4, unit);
-
-    if (get_reg_bit(UNIT_SEL, 4) == (bool)unit)
-    {
-        _unit_config.temp = unit;
-        return true;
-    }
-
-    return false;
+    return set_reg_bit_checked(UNIT_SEL, 4, unit);
 }
 
 /*
@@ -257,4 +225,10 @@ bool BNO055::get_reg_bit(const bno_reg_t &reg, uint8_t n)
 {
     uint16_t current = read_reg(reg);
     return (current >> n) & 0x01;
+}
+
+bool BNO055::set_reg_bit_checked(const bno_reg_t &reg, uint8_t n, bool value)
+{
+    set_reg_bit(reg, n, value);
+    return (get_reg_bit(reg, n) == value);
 }
