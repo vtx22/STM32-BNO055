@@ -19,6 +19,7 @@ constexpr bno_reg_t GYR_ID = {0x03, 1, 0};
 constexpr bno_reg_t SW_REV_ID = {0x04, 2, 0};
 constexpr bno_reg_t BOOTL_VER = {0x06, 1, 0};
 
+constexpr bno_reg_t ACC_DATA = {0x08, 6, 0};
 constexpr bno_reg_t ACC_DATA_X = {0x08, 2, 0};
 constexpr bno_reg_t ACC_DATA_Y = {0x0A, 2, 0};
 constexpr bno_reg_t ACC_DATA_Z = {0x0C, 2, 0};
@@ -175,4 +176,9 @@ struct BNO_UNIT_CONFIG
     BNO_ACC_UNIT acc = METERS_PER_SECOND2;
     BNO_ANG_UNIT angle = DEG;
     BNO_ANG_RATE_UNIT angle_rate = DEG_PER_SECOND;
+};
+
+struct bno_vec_3_t
+{
+    float x, y, z;
 };
