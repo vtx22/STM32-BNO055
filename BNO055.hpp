@@ -36,6 +36,7 @@ public:
 
     void set_operation_mode(BNO_OPERATION_MODE mode);
     void set_power_mode(BNO_POWER_MODE mode);
+    uint8_t get_system_status();
 
 private:
     void set_page_id(bool page);

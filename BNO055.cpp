@@ -55,6 +55,11 @@ void BNO055::set_power_mode(BNO_POWER_MODE mode)
     return write_reg(PWR_MODE, mode);
 }
 
+uint8_t BNO055::get_system_status()
+{
+    return read_reg(SYS_STATUS);
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);
