@@ -64,7 +64,6 @@ private:
     void write_reg(const bno_reg_t &reg, uint16_t value);
     void set_reg_bit(const bno_reg_t &reg, uint8_t n, bool value);
     bool get_reg_bit(const bno_reg_t &reg, uint8_t n);
-
     bool set_reg_bit_checked(const bno_reg_t &reg, uint8_t n, bool value);
 
     I2C_HandleTypeDef *_hi2c = nullptr;
