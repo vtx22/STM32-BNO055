@@ -243,7 +243,7 @@ float BNO055::get_acceleration_z()
 bno_vec_3_t BNO055::get_acceleration()
 {
     int16_t raw[3];
-    read_tripple_reg(ACC_DATA, raw);
+    read_triple_reg(ACC_DATA, raw);
 
     bno_vec_3_t data;
 
@@ -257,7 +257,7 @@ bno_vec_3_t BNO055::get_acceleration()
 bno_vec_3_t BNO055::get_euler()
 {
     int16_t raw[3];
-    read_tripple_reg(EULER_DATA, raw);
+    read_triple_reg(EULER_DATA, raw);
 
     bno_vec_3_t data;
 
