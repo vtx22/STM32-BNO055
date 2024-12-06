@@ -83,6 +83,8 @@ public:
 
     bno_vec_3_t get_gravity_vector();
 
+    bno_vec_4_t get_quaternion_data();
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);

@@ -394,6 +394,21 @@ bno_vec_3_t BNO055::get_gravity_vector()
     return data;
 }
 
+bno_vec_4_t BNO055::get_quaternion_data()
+{
+    int16_t raw[4];
+    read_quad_reg(QUA_DATA, raw);
+
+    bno_vec_4_t data;
+
+    data.w = raw[0] / (float)(2 << 13);
+    data.x = raw[0] / (float)(2 << 13);
+    data.y = raw[1] / (float)(2 << 13);
+    data.z = raw[2] / (float)(2 << 13);
+
+    return data;
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);

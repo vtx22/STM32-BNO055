@@ -197,3 +197,8 @@ struct bno_vec_3_t
 {
     float x, y, z;
 };
+
+struct bno_vec_4_t
+{
+    float w, x, y, z;
+};
