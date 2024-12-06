@@ -171,6 +171,13 @@ BNO_POWER_MODE BNO055::get_power_mode()
     return (BNO_POWER_MODE)read_reg(PWR_MODE);
 }
 
+void BNO055::set_axis_sign_invert(bool x, bool y, bool z)
+{
+    uint8_t raw = (x << 2) + (y << 1) + (uint8_t)z;
+
+    return write_reg(AXIS_MAP_SIGN, raw);
+}
+
 /*
 Get the BNO system status byte
 @return Current status byte
