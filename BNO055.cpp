@@ -417,6 +417,18 @@ void BNO055::read_triple_reg(const bno_reg_t &reg, int16_t *data)
     data[2] = (raw[5] << 8) + raw[4];
 }
 
+void BNO055::read_quad_reg(const bno_reg_t &reg, int16_t *data)
+{
+    uint8_t raw[8];
+
+    read_i2c_bytes(_hi2c, _address, reg.address, raw, 8);
+
+    data[0] = (raw[1] << 8) + raw[0];
+    data[1] = (raw[3] << 8) + raw[2];
+    data[2] = (raw[5] << 8) + raw[4];
+    data[3] = (raw[7] << 8) + raw[6];
+}
+
 void BNO055::write_reg(const bno_reg_t &reg, uint16_t value)
 {
     set_page_id(reg.page);
