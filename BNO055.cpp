@@ -29,6 +29,21 @@ void BNO055::hardware_reset()
     HAL_Delay(900);
 }
 
+void BNO055::software_reset()
+{
+    return set_reg_bit(SYS_TRIGGER, 5, true);
+}
+
+void BNO055::self_test()
+{
+    return set_reg_bit(SYS_TRIGGER, 0, true);
+}
+
+void BNO055::reset_interrupts()
+{
+    return set_reg_bit(SYS_TRIGGER, 6, true);
+}
+
 void BNO055::set_page_id(bool page)
 {
     if (_page == page)
