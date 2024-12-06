@@ -58,6 +58,7 @@ public:
     BNO_POWER_MODE get_power_mode();
 
     void set_axis_sign_invert(bool x, bool y, bool z);
+    uint8_t get_axis_sign_invert();
 
     uint8_t get_system_status();
     uint8_t get_system_error();

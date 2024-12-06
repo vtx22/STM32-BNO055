@@ -178,6 +178,11 @@ void BNO055::set_axis_sign_invert(bool x, bool y, bool z)
     return write_reg(AXIS_MAP_SIGN, raw);
 }
 
+uint8_t BNO055::get_axis_sign_invert()
+{
+    return read_reg(AXIS_MAP_SIGN);
+}
+
 /*
 Get the BNO system status byte
 @return Current status byte
