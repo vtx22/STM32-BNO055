@@ -240,6 +240,33 @@ float BNO055::get_acceleration_z()
     return (_unit_config.acc == MILLI_G) ? raw : raw / 100.f;
 }
 
+bno_vec_3_t BNO055::get_acceleration()
+{
+    int16_t raw[3];
+    read_tripple_reg(ACC_DATA, raw);
+
+    bno_vec_3_t data;
+
+    data.x = (_unit_config.acc == MILLI_G) ? raw[0] : raw[0] / 100.f;
+    data.y = (_unit_config.acc == MILLI_G) ? raw[1] : raw[1] / 100.f;
+    data.z = (_unit_config.acc == MILLI_G) ? raw[2] : raw[2] / 100.f;
+
+    return data;
+}
+
+bno_vec_3_t BNO055::get_euler()
+{
+    int16_t raw[3];
+    read_tripple_reg(EULER_DATA, raw);
+
+    bno_vec_3_t data;
+
+    data.x = (_unit_config.angle == DEG) ? raw[0] / 16.f : raw[0] / 900.f;
+    data.y = (_unit_config.angle == DEG) ? raw[1] / 16.f : raw[1] / 900.f;
+    data.z = (_unit_config.angle == DEG) ? raw[2] / 16.f : raw[2] / 900.f;
+
+    return data;
+}
 
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {

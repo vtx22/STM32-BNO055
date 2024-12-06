@@ -56,7 +56,9 @@ public:
     float get_acceleration_x();
     float get_acceleration_y();
     float get_acceleration_z();
-    float get_acceleration();
+    bno_vec_3_t get_acceleration();
+
+    bno_vec_3_t get_euler();
 
 private:
     void set_page_id(bool page);
