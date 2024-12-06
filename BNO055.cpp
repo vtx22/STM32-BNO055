@@ -4,6 +4,18 @@ BNO055::BNO055(I2C_HandleTypeDef *hi2c, uint8_t address) : _hi2c(hi2c), _address
 {
 }
 
+void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert)
+{
+    _rst_port = port;
+    _rst_pin = pin;
+    _rst_invert = invert;
+}
+
+void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin)
+{
+    return set_reset_pin(port, pin, false);
+}
+
 void BNO055::set_page_id(bool page)
 {
     if (_page == page)

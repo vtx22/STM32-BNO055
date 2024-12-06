@@ -29,6 +29,10 @@ class BNO055
 public:
     BNO055(I2C_HandleTypeDef *hi2c, uint8_t address);
 
+
+    void set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert);
+    void set_reset_pin(GPIO_TypeDef *port, uint16_t pin);
+
     uint16_t unique_id();
     uint8_t bno_chip_id();
     uint8_t acc_chip_id();
