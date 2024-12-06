@@ -24,27 +24,33 @@ constexpr bno_reg_t ACC_DATA_X = {0x08, 2, 0};
 constexpr bno_reg_t ACC_DATA_Y = {0x0A, 2, 0};
 constexpr bno_reg_t ACC_DATA_Z = {0x0C, 2, 0};
 
+constexpr bno_reg_t MAG_DATA = {0x0E, 6, 0};
 constexpr bno_reg_t MAG_DATA_X = {0x0E, 2, 0};
 constexpr bno_reg_t MAG_DATA_Y = {0x10, 2, 0};
 constexpr bno_reg_t MAG_DATA_Z = {0x12, 2, 0};
 
+constexpr bno_reg_t GYR_DATA = {0x14, 6, 0};
 constexpr bno_reg_t GYR_DATA_X = {0x14, 2, 0};
 constexpr bno_reg_t GYR_DATA_Y = {0x16, 2, 0};
 constexpr bno_reg_t GYR_DATA_Z = {0x18, 2, 0};
 
+constexpr bno_reg_t EULER_DATA = {0x1A, 6, 0};
 constexpr bno_reg_t EUL_HEADING = {0x1A, 2, 0};
 constexpr bno_reg_t EUL_ROLL = {0x1C, 2, 0};
 constexpr bno_reg_t EUL_PITCH = {0x1E, 2, 0};
 
+constexpr bno_reg_t QUA_DATA = {0x20, 8, 0};
 constexpr bno_reg_t QUA_DATA_W = {0x20, 2, 0};
 constexpr bno_reg_t QUA_DATA_X = {0x22, 2, 0};
 constexpr bno_reg_t QUA_DATA_Y = {0x24, 2, 0};
 constexpr bno_reg_t QUA_DATA_Z = {0x26, 2, 0};
 
+constexpr bno_reg_t LIA_DATA = {0x28, 6, 0};
 constexpr bno_reg_t LIA_DATA_X = {0x28, 2, 0};
 constexpr bno_reg_t LIA_DATA_Y = {0x2A, 2, 0};
 constexpr bno_reg_t LIA_DATA_Z = {0x2C, 2, 0};
 
+constexpr bno_reg_t GRV_DATA = {0x2E, 6, 0};
 constexpr bno_reg_t GRV_DATA_X = {0x2E, 2, 0};
 constexpr bno_reg_t GRV_DATA_Y = {0x30, 2, 0};
 constexpr bno_reg_t GRV_DATA_Z = {0x32, 2, 0};
@@ -68,14 +74,17 @@ constexpr bno_reg_t AXIS_MAP_SIGN = {0x42, 1, 0};
 constexpr bno_reg_t SIC_MATRIX[] = {
     {0x43, 2, 0}, {0x45, 2, 0}, {0x47, 2, 0}, {0x49, 2, 0}, {0x4B, 2, 0}, {0x4D, 2, 0}, {0x4F, 2, 0}, {0x51, 2, 0}, {0x53, 2, 0}};
 
+constexpr bno_reg_t ACC_OFFSET = {0x55, 6, 0};
 constexpr bno_reg_t ACC_OFFSET_X = {0x55, 2, 0};
 constexpr bno_reg_t ACC_OFFSET_Y = {0x57, 2, 0};
 constexpr bno_reg_t ACC_OFFSET_Z = {0x59, 2, 0};
 
+constexpr bno_reg_t MAG_OFFSET = {0x5B, 6, 0};
 constexpr bno_reg_t MAG_OFFSET_X = {0x5B, 2, 0};
 constexpr bno_reg_t MAG_OFFSET_Y = {0x5D, 2, 0};
 constexpr bno_reg_t MAG_OFFSET_Z = {0x5F, 2, 0};
 
+constexpr bno_reg_t GYR_OFFSET = {0x61, 6, 0};
 constexpr bno_reg_t GYR_OFFSET_X = {0x61, 2, 0};
 constexpr bno_reg_t GYR_OFFSET_Y = {0x63, 2, 0};
 constexpr bno_reg_t GYR_OFFSET_Z = {0x65, 2, 0};
