@@ -45,6 +45,7 @@ public:
     uint8_t gyro_chip_id();
 
     bool set_sys_clk(BNO_CLK_SOURCE clk_source);
+    bool get_sys_clk_status();
 
     uint16_t software_revision();
     uint8_t bootloader_version();

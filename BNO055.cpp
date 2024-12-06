@@ -97,7 +97,17 @@ uint8_t BNO055::gyro_chip_id()
 
 bool BNO055::set_sys_clk(BNO_CLK_SOURCE clk_source)
 {
+    if (!get_sys_clk_status())
+    {
+        return false;
+    }
+
     return set_reg_bit_checked(SYS_TRIGGER, 7, clk_source);
+}
+
+bool BNO055::get_sys_clk_status()
+{
+    return get_reg_bit(SYS_CLK_STAT, 0);
 }
 
 /*
