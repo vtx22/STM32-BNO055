@@ -293,6 +293,34 @@ bno_vec_3_t BNO055::get_euler()
     return data;
 }
 
+bno_vec_3_t BNO055::get_mag_data()
+{
+    int16_t raw[3];
+    read_triple_reg(MAG_DATA, raw);
+
+    bno_vec_3_t data;
+
+    data.x = raw[0] / 16.f;
+    data.y = raw[1] / 16.f;
+    data.z = raw[2] / 16.f;
+
+    return data;
+}
+
+bno_vec_3_t BNO055::get_gyro_data()
+{
+    int16_t raw[3];
+    read_triple_reg(MAG_DATA, raw);
+
+    bno_vec_3_t data;
+
+    data.x = (_unit_config.angle_rate == DEG_PER_SECOND) ? raw[0] / 16.f : raw[0] / 900.f;
+    data.y = (_unit_config.angle_rate == DEG_PER_SECOND) ? raw[1] / 16.f : raw[1] / 900.f;
+    data.z = (_unit_config.angle_rate == DEG_PER_SECOND) ? raw[2] / 16.f : raw[2] / 900.f;
+
+    return data;
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);
