@@ -16,6 +16,19 @@ void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin)
     return set_reset_pin(port, pin, false);
 }
 
+void BNO055::hardware_reset()
+{
+    if (_rst_port == nullptr)
+    {
+        return;
+    }
+
+    HAL_GPIO_WritePin(_rst_port, _rst_pin, _rst_invert ? GPIO_PIN_SET : GPIO_PIN_RESET);
+    HAL_Delay(100);
+    HAL_GPIO_WritePin(_rst_port, _rst_pin, _rst_invert ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_Delay(900);
+}
+
 void BNO055::set_page_id(bool page)
 {
     if (_page == page)
