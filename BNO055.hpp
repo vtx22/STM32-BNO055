@@ -53,7 +53,9 @@ public:
     int16_t temperature();
 
     void set_operation_mode(BNO_OPERATION_MODE mode);
+    BNO_OPERATION_MODE get_operation_mode();
     void set_power_mode(BNO_POWER_MODE mode);
+    BNO_POWER_MODE get_power_mode();
 
     uint8_t get_system_status();
     uint8_t get_system_error();

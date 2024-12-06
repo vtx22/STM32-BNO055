@@ -152,6 +152,11 @@ void BNO055::set_operation_mode(BNO_OPERATION_MODE mode)
     return write_reg(OPR_MODE, mode);
 }
 
+BNO_OPERATION_MODE BNO055::get_operation_mode()
+{
+    return (BNO_OPERATION_MODE)read_reg(OPR_MODE);
+}
+
 /*
 Set the BNO power mode
 @param mode Power mode, see BNO_POWER_MODE
@@ -159,6 +164,11 @@ Set the BNO power mode
 void BNO055::set_power_mode(BNO_POWER_MODE mode)
 {
     return write_reg(PWR_MODE, mode);
+}
+
+BNO_POWER_MODE BNO055::get_power_mode()
+{
+    return (BNO_POWER_MODE)read_reg(PWR_MODE);
 }
 
 /*
