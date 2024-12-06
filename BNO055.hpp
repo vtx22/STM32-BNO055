@@ -70,9 +70,6 @@ public:
     bool set_temperature_unit(BNO_TEMP_UNIT unit);
     void set_temperature_source(BNO_TEMP_SOURCE source);
 
-    float get_acceleration_x();
-    float get_acceleration_y();
-    float get_acceleration_z();
     bno_vec_3_t get_acceleration();
 
     bno_vec_3_t get_linear_acceleration();
