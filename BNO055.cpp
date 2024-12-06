@@ -335,6 +335,20 @@ bno_vec_3_t BNO055::get_gyro_data()
     return data;
 }
 
+bno_vec_3_t BNO055::get_gravity_vector()
+{
+    int16_t raw[3];
+    read_triple_reg(GRV_DATA, raw);
+
+    bno_vec_3_t data;
+
+    data.x = (_unit_config.acc == MILLI_G) ? raw[0] : raw[0] / 100.f;
+    data.y = (_unit_config.acc == MILLI_G) ? raw[1] : raw[1] / 100.f;
+    data.z = (_unit_config.acc == MILLI_G) ? raw[2] : raw[2] / 100.f;
+
+    return data;
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);

@@ -72,6 +72,8 @@ public:
 
     bno_vec_3_t get_gyro_data();
 
+    bno_vec_3_t get_gravity_vector();
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
