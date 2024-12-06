@@ -64,6 +64,8 @@ public:
     float get_acceleration_z();
     bno_vec_3_t get_acceleration();
 
+    bno_vec_3_t get_linear_acceleration();
+
     bno_vec_3_t get_euler();
 
     bno_vec_3_t get_mag_data();
