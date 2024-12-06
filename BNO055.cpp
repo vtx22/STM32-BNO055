@@ -310,7 +310,7 @@ bno_vec_3_t BNO055::get_mag_data()
 bno_vec_3_t BNO055::get_gyro_data()
 {
     int16_t raw[3];
-    read_triple_reg(MAG_DATA, raw);
+    read_triple_reg(GYR_DATA, raw);
 
     bno_vec_3_t data;
 
