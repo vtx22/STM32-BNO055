@@ -85,4 +85,8 @@ private:
     bool _page = false;
 
     BNO_UNIT_CONFIG _unit_config;
+
+    GPIO_TypeDef *_rst_port = nullptr;
+    uint16_t _rst_pin;
+    bool _rst_invert = false;
 };
