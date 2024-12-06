@@ -80,6 +80,11 @@ uint8_t BNO055::gyro_chip_id()
     return read_reg(GYR_ID);
 }
 
+bool BNO055::set_sys_clk(BNO_CLK_SOURCE clk_source)
+{
+    return set_reg_bit_checked(SYS_TRIGGER, 7, clk_source);
+}
+
 /*
 Get the current device software revision as a fixed point number
 where the second byte represents the integer after the decimal point.

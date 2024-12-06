@@ -178,6 +178,12 @@ enum BNO_TEMP_SOURCE
     TEMP_GYROSCOPE,
 };
 
+enum BNO_CLK_SOURCE
+{
+    INTERNAL,
+    EXTERNAL,
+};
+
 struct BNO_UNIT_CONFIG
 {
     BNO_ORI_FORMAT ori = WINDOWS;
