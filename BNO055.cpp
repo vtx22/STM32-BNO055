@@ -149,7 +149,8 @@ Set the BNO operation mode
 */
 void BNO055::set_operation_mode(BNO_OPERATION_MODE mode)
 {
-    return write_reg(OPR_MODE, mode);
+    write_reg(OPR_MODE, mode);
+    HAL_Delay(20);
 }
 
 BNO_OPERATION_MODE BNO055::get_operation_mode()
