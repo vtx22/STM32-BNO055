@@ -57,6 +57,9 @@ public:
 
     uint8_t get_system_status();
     uint8_t get_system_error();
+    uint8_t get_interrupt_status();
+    uint8_t get_selftest_results();
+    uint8_t get_calib_status();
 
     void set_orientation_format(BNO_ORI_FORMAT format);
     bool set_acceleration_unit(BNO_ACC_UNIT unit);

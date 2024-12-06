@@ -179,6 +179,21 @@ uint8_t BNO055::get_system_error()
     return read_reg(SYS_ERR);
 }
 
+uint8_t BNO055::get_interrupt_status()
+{
+    return read_reg(INT_STAT);
+}
+
+uint8_t BNO055::get_selftest_results()
+{
+    return read_reg(ST_RESULT);
+}
+
+uint8_t BNO055::get_calib_status()
+{
+    return read_reg(CALIB_STAT);
+}
+
 /*
 Specify the output orientation format
 
