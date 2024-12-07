@@ -134,3 +134,30 @@ Reading the temperature is done using
 ```c++
 int16_t temperature(); // Returns temperature in degrees celsius or fahrenheit, see set_temperature_unit
 ```
+
+### Unit selection
+
+You can select different output units for different data types by calling the `set_[...]_unit` methods. The following units are available.
+| **Unit Struct Name**          | **Influenced Data**                            | **Available units** |
+| :---------------------------- | :--------------------------------------------- | :------------------ |
+| BNO_ACC_UNIT                  | acceleration<br>linear acceleration<br>gravity | `m/s^2` or `mg`     |
+| BNO_ANG_UNIT                  | euler angles                                   | `deg` or `rad`      |
+| BNO_ANG_RATE_UNIT             | angular rate                                   | `deg/s` or `rad/s`  |
+| BNO_TEMP_UNIT                 | temperature                                    | `°C` or `°F`        |
+
+:warning: Changing units is only possible in `CONFIGMODE`<br>
+:information_source: Quaternion data is unitless<br>
+:information_source: Magnetometer data unit is always `uT` and cannot be changed
+
+The selected units are tracked internally by the sensor class. When you read the data the correct unit conversion is performed.<br>
+`temperature()` for example will return either `°C` or `°F`, depending on your selection.
+
+```c++
+bool set_acceleration_unit(BNO_ACC_UNIT unit);          // either METERS_PER_SECOND2 or MILLI_G
+bool set_angle_unit(BNO_ANG_UNIT unit);                 // either DEG                or RAD
+bool set_angular_rate_unit(BNO_ANG_RATE_UNIT unit);     // either DEG_PER_SECOND     or RAD_PER_SECOND
+bool set_temperature_unit(BNO_TEMP_UNIT unit);          // either CELSIUS            or FAHRENHEIT
+```
+All functions return `true` if the unit was updated sucessfully. If false, make sure that you are in `CONFIGMODE`
+
+### Axis output settings
