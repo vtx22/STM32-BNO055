@@ -161,3 +161,15 @@ bool set_temperature_unit(BNO_TEMP_UNIT unit);          // either CELSIUS       
 All functions return `true` if the unit was updated sucessfully. If false, make sure that you are in `CONFIGMODE`
 
 ### Axis output settings
+:warning: Changing axis settings is only possible in `CONFIGMODE`<br>
+#### Orientation output format
+Two different fusion data output formats are available.
+| **Rotation Angle** | **Range (Android)**                     | **Range (Windows)**                     |
+|--------------------|-----------------------------------------|-----------------------------------------|
+| Pitch              | +180° to -180°<br>(cw = value decrease) | -180° to +180°<br>(cw = value increase) |
+| Roll               | -90° to +90°                            | -90° to +90°                            |
+| Yaw                | 0° to 360°                              | 0° to 360°                              |
+
+```c++
+void set_orientation_format(BNO_ORI_FORMAT format); // either WINDOWS or ANDROID
+```
