@@ -78,9 +78,26 @@ uint8_t  get_selftest_results();  // Returns selftest result bits
 ```
 
 ### Operation Mode
-The operation mode defines what sensors and algorithms are active.
+The operation mode defines which sensors and algorithms are active.
+| **BNO_OPERATION_MODE**      | **Description** | **ACC** | **MAG** | **GYR** | **Fusion** |
+|-----------------------------|-----------------|--------------------|----|-----|-----|
+| CONFIGMODE                  | This is the only mode in which setting registers are writable        | :x: | :x: | :x: | :x: | 
+| ACC_ONLY                    | Only accelerometer enabled        | :heavy_check_mark: | :x: | :x: | :x: | 
+| MAG_ONLY                    | Only magentometer enabled        | :x: | :heavy_check_mark: | :x: | :x: | 
+| GYRO_ONLY                   | Only gyroscope enabled        | :x: | :x: | :heavy_check_mark: | :x: | 
+| ACC_MAG                     | Both accelerometer and magentometer enabled         | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | 
+| ACC_GYRO                    | Both accelerometer and gyroscope enabled     | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | 
+| MAG_GYRO                    | Both magnetometer and gyroscope enabled      | :x: | :heavy_check_mark: | :heavy_check_mark: | :x: | 
+| AMG                         | All three sensors enabled     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | 
+| IMU                         | Relative orientation from accelerometer and gyroscope     | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | 
+| COMPASS                     | Heading calculation from gravity vector and magnetometer     | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | 
+| M4G                         | Same as IMU, but magnetometer is used instead of gyroscope     | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | 
+| NDOF_FMC_OFF                | 9 DoF fusion without fast magnetometer calibration (FMC)     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | 
+| NDOF                        | 9 DoF fusion with fast magentometer calibration (FMC)    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | 
+
+:warning: Switching operation modes takes around 20 ms
 ```c++
-void                 set_operation_mode(BNO_OPERATION_MODE mode);  // Set the operation mode
+void                 set_operation_mode(BNO_OPERATION_MODE mode);  // Sets the operation mode and blocks for 20 ms
 BNO_OPERATION_MODE   get_operation_mode();                         // Get the current operation mode
 ```
 
