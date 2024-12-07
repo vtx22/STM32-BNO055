@@ -83,7 +83,7 @@ The operation mode defines which sensors and algorithms are active.
 | :---------------------------| :----------------------------------------------------------------------------------------|--------------------|--------------------|--------------------|--------------------|
 | CONFIGMODE                  | This is the only mode in which setting registers are writable, default mode after reset  | :x:                | :x:                | :x:                | :x:                | 
 | ACC_ONLY                    | Only accelerometer enabled                                                               | :heavy_check_mark: | :x:                | :x:                | :x:                | 
-| MAG_ONLY                    | Only magentometer enabled                                                                | :x:                | :heavy_check_mark: | :x:                | :x:                | 
+| MAG_ONLY                    | Only magnetometer enabled                                                                | :x:                | :heavy_check_mark: | :x:                | :x:                | 
 | GYRO_ONLY                   | Only gyroscope enabled                                                                   | :x:                | :x:                | :heavy_check_mark: | :x:                | 
 | ACC_MAG                     | Both accelerometer and magentometer enabled                                              | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | 
 | ACC_GYRO                    | Both accelerometer and gyroscope enabled                                                 | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | 
