@@ -182,7 +182,15 @@ uint8_t get_axis_sign_invert();                     // Get the current signs, bi
 #### Axis remap
 
 ### System Status
+Get the system status byte.
+```c++
+uint8_t get_system_status();
+```
 ### System Error
+Get the system error byte.
+```c++
+uint8_t get_system_error();
+```
 
 ### Output IMU data
 #### Accelerometer data
