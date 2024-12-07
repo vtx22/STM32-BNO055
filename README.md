@@ -89,7 +89,7 @@ The operation mode defines which sensors and algorithms are active.
 | ACC_ONLY                    | Only accelerometer enabled                                                               | :heavy_check_mark: | :x:                | :x:                | :x:                | 
 | MAG_ONLY                    | Only magnetometer enabled                                                                | :x:                | :heavy_check_mark: | :x:                | :x:                | 
 | GYRO_ONLY                   | Only gyroscope enabled                                                                   | :x:                | :x:                | :heavy_check_mark: | :x:                | 
-| ACC_MAG                     | Both accelerometer and magentometer enabled                                              | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | 
+| ACC_MAG                     | Both accelerometer and magnetometer enabled                                              | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | 
 | ACC_GYRO                    | Both accelerometer and gyroscope enabled                                                 | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | 
 | MAG_GYRO                    | Both magnetometer and gyroscope enabled                                                  | :x:                | :heavy_check_mark: | :heavy_check_mark: | :x:                | 
 | AMG                         | All three sensors enabled                                                                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | 
