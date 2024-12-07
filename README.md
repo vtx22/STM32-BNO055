@@ -180,3 +180,54 @@ void set_axis_sign_invert(bool x, bool y, bool z);  // false = no invert, true =
 uint8_t get_axis_sign_invert();                     // Get the current signs, bits are: 0bxxxxxXYZ
 ```
 #### Axis remap
+
+### System Status
+### System Error
+
+### Output IMU data
+#### Accelerometer data
+Get the acceleration data for x, y and z axis.
+```c++
+bno_vec_3_t get_acceleration();
+```
+:information_source: The unit is either `m/s^2` or `mg`, see Unit selection 
+#### Linear Acceleration
+Get the linear acceleration for x, y and z axis.
+```c++
+bno_vec_3_t get_linear_acceleration();
+```
+:information_source: The unit is either `m/s^2` or `mg`, see Unit selection 
+:warning: Linear acceleration integration for velocity and position estimation is too inaccurate.
+#### Gravity vector
+Get the gravity vector estimation.
+```c++
+bno_vec_3_t get_gravity_vector();
+```
+:information_source: The unit is either `m/s^2` or `mg`, see Unit selection
+:warning: Only available in fusion mode
+#### Gyroscope data
+Get the gyroscope data (angular rate) for x, y and z axis.
+```c++
+bno_vec_3_t get_gyro_data();
+```
+:information_source: The unit is either `deg/s` or `rad/s`, see Unit selection 
+#### Magnetometer data
+Get the magnetometer data for x, y and z axis.
+```c++
+bno_vec_3_t get_mag_data();
+```
+:information_source: The unit is always `uT`
+#### Euler angles
+Get the fused orientation as euler angles for each axis.
+```c++
+bno_vec_3_t get_euler();
+```
+:information_source: The unit is either `deg` or `rad`, see Unit selection
+:warning: Only available in fusion mode
+#### Quaternion data
+Get the fused orientation as quaternion (w + jx + ky + lz)
+```c++
+bno_vec_4_t get_quaternion_data();
+```
+:information_source: Quaternions are unitless
+:warning: Only available in fusion mode
