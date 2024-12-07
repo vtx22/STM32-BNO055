@@ -173,3 +173,10 @@ Two different fusion data output formats are available.
 ```c++
 void set_orientation_format(BNO_ORI_FORMAT format); // either WINDOWS or ANDROID
 ```
+#### Axis signs
+You can change the sign of every axis to invert its direction.
+```c++
+void set_axis_sign_invert(bool x, bool y, bool z);  // false = no invert, true = invert axis
+uint8_t get_axis_sign_invert();                     // Get the current signs, bits are: 0bxxxxxXYZ
+```
+#### Axis remap
