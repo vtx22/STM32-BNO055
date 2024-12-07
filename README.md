@@ -187,6 +187,10 @@ void set_axis_sign_invert(bool x, bool y, bool z);  // false = no invert, true =
 uint8_t get_axis_sign_invert();                     // Get the current signs, bits are: 0bxxxxxXYZ
 ```
 #### Axis remap
+You can remap axes to new axes. The default map is: X Axis = X, Y Axis = Y, Z Axis = Z. Mapping one axis to two or more is not allowed and will be ignored by the BNO.
+```c++
+void set_axis_remap(BNO_AXIS new_x, BNO_AXIS new_y, BNO_AXIS new_z); // use BNO_X_AXIS, BNO_Y_AXIS or BNO_Z_AXIS
+```
 
 ### System Status
 Get the system status byte.
