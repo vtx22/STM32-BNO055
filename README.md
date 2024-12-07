@@ -2,9 +2,7 @@
 STM32 library for the Bosch BNO055 IMU with integrated sensor fusion algorithm
 
 ## Usage example
-Copy the `BNO055.cpp`, `BNO55.hpp`, `I2C.cpp` and `I2C.hpp` to your source and include directory.
-
-To build, specify a build flag for your STM32 MCU. If you use a STM32F1XXX for example, use `-D STM32F1`. In the Cube IDE, edit the C/C++ build settings.
+### Simple Code
 ```c++
 #include "BNO055.hpp"
 
@@ -30,5 +28,11 @@ while(true)
   bno_vec_3_t euler_angles = bno.euler_angles();
   HAL_Delay(100);
 }
-
 ```
+
+### Build
+Copy the `BNO055.cpp`, `BNO55.hpp`, `I2C.cpp` and `I2C.hpp` to your source and include directory.
+
+To build, specify a build flag for your STM32 MCU. For a STM32F1XXX for example, use `-D STM32F1`.
+
+In the **Cube IDE**, paste the flag in the `Preprocessor` tab in the C/C++ build settings under `Project > Properties`
