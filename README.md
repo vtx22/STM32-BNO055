@@ -124,6 +124,23 @@ uint8_t get_calib_status();   // Get the sensor calibration status
 ```
 ---
 ### Interrupts
+#### Interrupt Enable
+To enable certain interrupts, set the respective bits. For all bits see `BNO_INT_MASK` or the datasheet.
+```c++
+void set_interrupt_enable(uint8_t int_en_bits);   // Set the interrupt enable bits, see BNO_INT_MASK for all bits
+```
+Example:
+```c++
+set_interrupt_enable(ACC_NM | ACC_HIGH_G); // Enable accelerometer no motion and high-g interrupt
+```
+To disable all interrupts, set the interrupt enable byte to `0`.
+#### Interrupt Mask
+With the interrupt mask you can control which interrupts trigger a change of the INT pin. When disabled, only the INT_STA bit will be updated.
+```c++
+void set_interrupt_mask(uint8_t int_msk_bits);   // Set the interrupt mask, see BNO_INT_MASK for all bits
+```
+To clear all mask bits, set the interrupt mask byte to `0`.
+#### Interrupt Status and Reset
 ```c++
 uint8_t get_interrupt_status();  // Get the interrupt status bits
 void reset_interrupts();         // Reset all interrupt status bits
