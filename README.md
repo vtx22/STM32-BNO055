@@ -36,3 +36,32 @@ Copy the `BNO055.cpp`, `BNO55.hpp`, `I2C.cpp` and `I2C.hpp` to your source and i
 To build, specify a build flag for your STM32 MCU. For a STM32F1XXX for example, use `-D STM32F1`.
 
 In the **Cube IDE**, paste the flag in the `Preprocessor` tab in the C/C++ build settings under `Project > Properties`
+
+## API
+### Constructor
+```c++
+BNO055(I2C_HandleTypeDef *hi2c, uint8_t address)
+```
+### Specify a reset pin
+Specify a GPIO pin that is connected to the BNO reset pin for hardware resets.
+The reset is performed by setting the pin low for 100ms and then back to high. If invert is true, the pin is set high and then kept low.
+```c++
+void set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert);   // Specify a STM32 GPIO pin using port and pin number
+void set_reset_pin(GPIO_TypeDef *port, uint16_t pin);                // Same as above with invert=false
+```
+### Sensor Reset
+The sensor can be reset via the reset pin or through a reset bit. After a reset, the method blocks for 900ms to ensure that the sensor has started.
+```c++
+void reset();            // Perform a hardware reset or a software reset if no reset pin is defined
+void hardware_reset();   // Perform a hardware reset by toggeling the reset pin, then wait 900ms. If no pin is defined, method returns.
+void software_reset();   // Perform a software reset by setting RST_SYS in SYS_TRIGGER and wait 900ms
+```
+### Get sensor IDs
+```c++
+uint16_t unique_id();     // Get the BNO           unique id
+uint8_t  bno_chip_id();   // Get the BNO           chip id, fixed value: 0xA0
+uint8_t  acc_chip_id();   // Get the accelorometer chip id, fixed value: 0xFB
+uint8_t  mag_chip_id();   // Get the magnetometer  chip id, fixed value: 0x32
+uint8_t  gyro_chip_id();  // Get the gyroscope     chip id, fixed value: 0x0F
+```
+
