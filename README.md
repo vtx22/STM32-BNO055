@@ -113,6 +113,12 @@ The BNO allows for three general power modes.
 void             set_power_mode(BNO_POWER_MODE mode);   // Set the power mode
 BNO_POWER_MODE   get_power_mode();                      // Get the current power mode
 ```
+
+### Sensor calibration
+```c++
+uint8_t get_calib_status();   // Get the sensor calibration status
+```
+
 ### Interrupts
 ```c++
 uint8_t get_interrupt_status();  // Get the interrupt status bits
