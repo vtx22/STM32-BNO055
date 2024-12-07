@@ -69,6 +69,7 @@ public:
     uint8_t get_calib_status();
 
     void set_interrupt_enable(uint8_t int_en_bits);
+    void set_interrupt_mask(uint8_t int_msk_bits);
 
     void set_orientation_format(BNO_ORI_FORMAT format);
     bool set_acceleration_unit(BNO_ACC_UNIT unit);

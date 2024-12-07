@@ -191,7 +191,7 @@ enum BNO_AXIS
     BNO_Z_AXIS,
 };
 
-enum BNO_INT_EN_MASK
+enum BNO_INT_MASK
 {
     ACC_BSX_DRDY = (1 << 0),
     MAG_DRDY = (1 << 1),

@@ -362,11 +362,20 @@ uint8_t BNO055::get_calib_status()
 
 /*
 Set which interrupts to enable
-@param int_en_bits Interrupt enable bitmap, see BNO_INT_EN_MASK
+@param int_en_bits Interrupt enable bitmap, see BNO_INT_MASK
 */
 void BNO055::set_interrupt_enable(uint8_t int_en_bits)
 {
     return write_reg(INT_EN, int_en_bits);
+}
+
+/*
+Set which interrupts to mask
+@param int_msk_bits Interrupt mask bitmap, see BNO_INT_MASK
+*/
+void BNO055::set_interrupt_mask(uint8_t int_msk_bits)
+{
+    return write_reg(INT_MSK, int_msk_bits);
 }
 
 /*
