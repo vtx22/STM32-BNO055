@@ -288,6 +288,18 @@ uint8_t BNO055::get_axis_sign_invert()
 }
 
 /*
+Remap BNO axes
+@param new_x Axis that will be mapped to the x axis
+@param new_y Axis that will be mapped to the y axis
+@param new_z Axis that will be mapped to the z axis
+*/
+void BNO055::set_axis_remap(BNO_AXIS new_x, BNO_AXIS new_y, BNO_AXIS new_z)
+{
+    uint8_t raw = (new_z << 4) + (new_y << 2) + new_x;
+    return write_reg(AXIS_MAP_CONFIG, raw);
+}
+
+/*
 Get the BNO system status byte
 @return Current status byte
 */

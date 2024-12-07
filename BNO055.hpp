@@ -60,6 +60,7 @@ public:
 
     void set_axis_sign_invert(bool x, bool y, bool z);
     uint8_t get_axis_sign_invert();
+    void set_axis_remap(BNO_AXIS new_x, BNO_AXIS new_y, BNO_AXIS new_z);
 
     uint8_t get_system_status();
     uint8_t get_system_error();

@@ -184,6 +184,13 @@ enum BNO_CLK_SOURCE
     EXTERNAL,
 };
 
+enum BNO_AXIS
+{
+    BNO_X_AXIS,
+    BNO_Y_AXIS,
+    BNO_Z_AXIS,
+};
+
 struct BNO_UNIT_CONFIG
 {
     BNO_ORI_FORMAT ori = WINDOWS;
