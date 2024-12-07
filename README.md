@@ -80,7 +80,7 @@ uint8_t  get_selftest_results();  // Returns selftest result bits
 ### Operation Mode
 The operation mode defines which sensors and algorithms are active.
 | **BNO_OPERATION_MODE**      | **Description**                                                                          | **ACC**            | **MAG**            | **GYR**            | **Fusion**         |
-|-----------------------------|------------------------------------------------------------------------------------------|--------------------|--------------------|--------------------|--------------------|
+| :---------------------------| :----------------------------------------------------------------------------------------|--------------------|--------------------|--------------------|--------------------|
 | CONFIGMODE                  | This is the only mode in which setting registers are writable, default mode after reset  | :x:                | :x:                | :x:                | :x:                | 
 | ACC_ONLY                    | Only accelerometer enabled                                                               | :heavy_check_mark: | :x:                | :x:                | :x:                | 
 | MAG_ONLY                    | Only magentometer enabled                                                                | :x:                | :heavy_check_mark: | :x:                | :x:                | 
@@ -102,7 +102,13 @@ BNO_OPERATION_MODE   get_operation_mode();                         // Get the cu
 ```
 
 ### Power Mode
-The BNO allows for three general power modes
+The BNO allows for three general power modes.
+| **BNO_POWER_MODE**          | **Description**                                                                                                         |
+| :---------------------------| :-----------------------------------------------------------------------------------------------------------------------|
+| NORMAL                      | All sensors required for the selected operation mode are always switched ON                                             | 
+| LOW_POWER                   | If no activity, low power mode is entered. Only accelerometer is active. If motion is detected, normal mode is entered. | 
+| SUSPEND                     | System is paused and all sensors are halted. Microcontroller is in sleep mode. No registers are updated.                |
+
 ```c++
 void             set_power_mode(BNO_POWER_MODE mode);   // Set the power mode
 BNO_POWER_MODE   get_power_mode();                      // Get the current power mode
