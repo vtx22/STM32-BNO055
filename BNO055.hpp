@@ -32,6 +32,7 @@ public:
     void set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert);
     void set_reset_pin(GPIO_TypeDef *port, uint16_t pin);
 
+    void reset();
     void hardware_reset();
     void software_reset();
 

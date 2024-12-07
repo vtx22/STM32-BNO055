@@ -28,6 +28,19 @@ void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin)
 }
 
 /*
+Performs a hardware reset or a software reset if no reset pin was specified
+*/
+void BNO055::reset()
+{
+    if (_rst_port != nullptr)
+    {
+        return hardware_reset();
+    }
+
+    return software_reset();
+}
+
+/*
 Triggers a hardware reset by pulling the reset pin low for 100ms.
 After that the method blocks for 900ms to ensure the sensor has booted before sending commands.
 If the reset pin was not specified, the function returns immediately.
