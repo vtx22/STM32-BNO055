@@ -43,6 +43,7 @@ Construct a BNO sensor object using the hi2c interface and the I2C address (e.g.
 ```c++
 BNO055(I2C_HandleTypeDef *hi2c, uint8_t address)
 ```
+---
 ### Specify a reset pin
 Specify a GPIO pin that is connected to the BNO reset pin for hardware resets.
 The reset is performed by setting the pin low for 100ms and then back to high. If invert is true, the pin is set high and then kept low.
@@ -50,6 +51,7 @@ The reset is performed by setting the pin low for 100ms and then back to high. I
 void set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert);   // Specify a STM32 GPIO pin using port and pin number
 void set_reset_pin(GPIO_TypeDef *port, uint16_t pin);                // Same as above with invert=false
 ```
+---
 ### Sensor Reset
 The sensor can be reset via the reset pin or through a reset bit. After a reset, the method blocks for 900ms to ensure that the sensor has started.
 ```c++
@@ -57,6 +59,7 @@ void reset();            // Perform a hardware reset or a software reset if no r
 void hardware_reset();   // Perform a hardware reset by toggeling the reset pin, then wait 900ms. If no pin is defined, method returns.
 void software_reset();   // Perform a software reset by setting RST_SYS in SYS_TRIGGER and wait 900ms
 ```
+---
 ### Get sensor IDs
 ```c++
 uint16_t unique_id();     // Get the BNO           unique id
@@ -65,18 +68,19 @@ uint8_t  acc_chip_id();   // Get the accelorometer chip id, fixed value: 0xFB
 uint8_t  mag_chip_id();   // Get the magnetometer  chip id, fixed value: 0x32
 uint8_t  gyro_chip_id();  // Get the gyroscope     chip id, fixed value: 0x0F
 ```
+---
 ### Software versions
 ```c++
 uint16_t  software_revision();   // Get the current BNO software version, format: [MSB].[LSB]
 uint8_t   bootloader_version();  // Get the current BNO bootloader version
 ```
-
+---
 ### Sensor self test
 ```c++
 void     self_test();             // Trigger a self test
 uint8_t  get_selftest_results();  // Returns selftest result bits
 ```
-
+---
 ### Operation Mode
 The operation mode defines which sensors and algorithms are active.
 | **BNO_OPERATION_MODE**      | **Description**                                                                          | **ACC**            | **MAG**            | **GYR**            | **Fusion**         |
@@ -100,7 +104,7 @@ The operation mode defines which sensors and algorithms are active.
 void                 set_operation_mode(BNO_OPERATION_MODE mode);  // Sets the operation mode and blocks for 20 ms
 BNO_OPERATION_MODE   get_operation_mode();                         // Get the current operation mode
 ```
-
+---
 ### Power Mode
 The BNO allows for three general power modes.
 | **BNO_POWER_MODE**          | **Description**                                                                                                         |
@@ -113,25 +117,25 @@ The BNO allows for three general power modes.
 void             set_power_mode(BNO_POWER_MODE mode);   // Set the power mode
 BNO_POWER_MODE   get_power_mode();                      // Get the current power mode
 ```
-
+---
 ### Sensor calibration
 ```c++
 uint8_t get_calib_status();   // Get the sensor calibration status
 ```
-
+---
 ### Interrupts
 ```c++
 uint8_t get_interrupt_status();  // Get the interrupt status bits
 void reset_interrupts();         // Reset all interrupt status bits
 ```
-
+---
 ### System Clock
 The BNO can run using its internal or an external oscillator.
 ```c++
 bool set_sys_clk(BNO_CLK_SOURCE clk_source);  // Set the system oscillator source (INTERNAL or EXTERNAL)
 bool get_sys_clk_status();                    // Get the system clock status
 ```
-
+---
 ### Temperature
 Both the accelerometer and the gyroscope have an integrated temperature sensor. You can select which one should be used for readings.
 ```c++
@@ -141,7 +145,7 @@ Reading the temperature is done using
 ```c++
 int16_t temperature(); // Returns temperature in °C or °F, see set_temperature_unit
 ```
-
+---
 ### Unit selection
 
 You can select different output units for different data types by calling the `set_[...]_unit` methods. The following units are available.
@@ -165,8 +169,10 @@ bool set_angle_unit(BNO_ANG_UNIT unit);                 // either DEG           
 bool set_angular_rate_unit(BNO_ANG_RATE_UNIT unit);     // either DEG_PER_SECOND     or RAD_PER_SECOND
 bool set_temperature_unit(BNO_TEMP_UNIT unit);          // either CELSIUS            or FAHRENHEIT
 ```
+
 All functions return `true` if the unit was updated sucessfully. If false, make sure that you are in `CONFIGMODE`
 
+---
 ### Axis output settings
 :warning: Changing axis settings is only possible in `CONFIGMODE`<br>
 #### Orientation output format
@@ -187,18 +193,23 @@ void set_axis_sign_invert(bool x, bool y, bool z);  // false = no invert, true =
 uint8_t get_axis_sign_invert();                     // Get the current signs, bits are: 0bxxxxxXYZ
 ```
 #### Axis remap
-
+You can remap axes to new axes. The default map is: X Axis = X, Y Axis = Y, Z Axis = Z. Mapping one axis to two or more is not allowed and will be ignored by the BNO.
+```c++
+void set_axis_remap(BNO_AXIS new_x, BNO_AXIS new_y, BNO_AXIS new_z); // use BNO_X_AXIS, BNO_Y_AXIS or BNO_Z_AXIS
+```
+---
 ### System Status
 Get the system status byte.
 ```c++
 uint8_t get_system_status();
 ```
+---
 ### System Error
 Get the system error byte.
 ```c++
 uint8_t get_system_error();
 ```
-
+---
 ### Output IMU data
 #### Accelerometer data
 Get the acceleration data for x, y and z axis.
@@ -246,3 +257,5 @@ bno_vec_4_t get_quaternion_data();
 ```
 :information_source: Quaternions are unitless<br>
 :warning: Only available in fusion mode
+
+---
