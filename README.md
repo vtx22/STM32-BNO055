@@ -268,7 +268,7 @@ bno_vec_3_t get_euler();
 :information_source: The unit is either `deg` or `rad`, see Unit selection<br>
 :warning: Only available in fusion mode
 #### Quaternion data
-Get the fused orientation as quaternion (w + jx + ky + lz)
+Get the fused orientation as quaternion (w + ix + jy + kz)
 ```c++
 bno_vec_4_t get_quaternion_data();
 ```
