@@ -64,7 +64,8 @@ Trigger a software reset by setting the RST_SYS bit in the SYS_TRIGGER register 
 */
 void BNO055::software_reset()
 {
-    return set_reg_bit(SYS_TRIGGER, 5, true);
+    set_reg_bit(SYS_TRIGGER, 5, true);
+    HAL_Delay(900);
 }
 
 /*
