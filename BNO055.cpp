@@ -361,6 +361,15 @@ uint8_t BNO055::get_calib_status()
 }
 
 /*
+Set which interrupts to enable
+@param int_en_bits Interrupt enable bitmap, see BNO_INT_EN_MASK
+*/
+void BNO055::set_interrupt_enable(uint8_t int_en_bits)
+{
+    return write_reg(INT_EN, int_en_bits);
+}
+
+/*
 Specify the output orientation format
 
 Note: Changes only take effect when the sensor is in CONFIGMODE

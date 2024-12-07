@@ -68,6 +68,8 @@ public:
     uint8_t get_selftest_results();
     uint8_t get_calib_status();
 
+    void set_interrupt_enable(uint8_t int_en_bits);
+
     void set_orientation_format(BNO_ORI_FORMAT format);
     bool set_acceleration_unit(BNO_ACC_UNIT unit);
     bool set_angular_rate_unit(BNO_ANG_RATE_UNIT unit);

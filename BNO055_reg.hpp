@@ -191,6 +191,18 @@ enum BNO_AXIS
     BNO_Z_AXIS,
 };
 
+enum BNO_INT_EN_MASK
+{
+    ACC_BSX_DRDY = (1 << 0),
+    MAG_DRDY = (1 << 1),
+    GYRO_AM = (1 << 2),
+    GYR_HIGH_RATE = (1 << 3),
+    GYR_DRDY = (1 << 4),
+    ACC_HIGH_G = (1 << 5),
+    ACC_AM = (1 << 6),
+    ACC_NM = (1 << 7),
+};
+
 struct BNO_UNIT_CONFIG
 {
     BNO_ORI_FORMAT ori = WINDOWS;
