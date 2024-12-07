@@ -39,6 +39,7 @@ In the **Cube IDE**, paste the flag in the `Preprocessor` tab in the C/C++ build
 
 ## API
 ### Constructor
+Construct a BNO sensor object using the hi2c interface and the I2C address (e.g. 0x28)
 ```c++
 BNO055(I2C_HandleTypeDef *hi2c, uint8_t address)
 ```
@@ -64,4 +65,49 @@ uint8_t  acc_chip_id();   // Get the accelorometer chip id, fixed value: 0xFB
 uint8_t  mag_chip_id();   // Get the magnetometer  chip id, fixed value: 0x32
 uint8_t  gyro_chip_id();  // Get the gyroscope     chip id, fixed value: 0x0F
 ```
+### Software versions
+```c++
+uint16_t  software_revision();   // Get the current BNO software version, format: [MSB].[LSB]
+uint8_t   bootloader_version();  // Get the current BNO bootloader version
+```
 
+### Sensor self test
+```c++
+void     self_test();             // Trigger a self test
+uint8_t  get_selftest_results();  // Returns selftest result bits
+```
+
+### Operation Mode
+The operation mode defines what sensors and algorithms are active.
+```c++
+void                 set_operation_mode(BNO_OPERATION_MODE mode);  // Set the operation mode
+BNO_OPERATION_MODE   get_operation_mode();                         // Get the current operation mode
+```
+
+### Power Mode
+The BNO allows for three general power modes
+```c++
+void             set_power_mode(BNO_POWER_MODE mode);   // Set the power mode
+BNO_POWER_MODE   get_power_mode();                      // Get the current power mode
+```
+### Interrupts
+```c++
+void reset_interrupts(); // Reset all interrupt status bits
+```
+
+### System Clock
+The BNO can run using its internal or an external oscillator.
+```c++
+bool set_sys_clk(BNO_CLK_SOURCE clk_source);  // Set the system oscillator source (INTERNAL or EXTERNAL)
+bool get_sys_clk_status();                    // Get the system clock status
+```
+
+### Temperature
+Both the accelerometer and the gyroscope have an integrated temperature sensor. You can select which one should be used for readings.
+```c++
+void set_temperature_source(BNO_TEMP_SOURCE source); // TEMP_ACCELEROMETER or TEMP_GYROSCOPE
+```
+Reading the temperature is done using
+```c++
+int16_t temperature(); // Returns temperature in degrees celsius or fahrenheit, see set_temperature_unit
+```
