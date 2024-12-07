@@ -2,6 +2,7 @@
 STM32 library for the Bosch BNO055 IMU with integrated sensor fusion algorithm
 
 ## Usage example
+Paste the `BNO055.cpp`, `BNO55.hpp`, `I2C.cpp` and `I2C.hpp` to your source and include directory
 ```c++
 #include "BNO055.hpp"
 
