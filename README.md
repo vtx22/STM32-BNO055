@@ -132,7 +132,7 @@ void set_temperature_source(BNO_TEMP_SOURCE source); // TEMP_ACCELEROMETER or TE
 ```
 Reading the temperature is done using
 ```c++
-int16_t temperature(); // Returns temperature in degrees celsius or fahrenheit, see set_temperature_unit
+int16_t temperature(); // Returns temperature in °C or °F, see set_temperature_unit
 ```
 
 ### Unit selection
