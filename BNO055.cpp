@@ -4,6 +4,12 @@ BNO055::BNO055(I2C_HandleTypeDef *hi2c, uint8_t address) : _hi2c(hi2c), _address
 {
 }
 
+/*
+Specify a GPIO pin connected to the BNO reset pin. This pin will be used for hardware resetting the sensor.
+@param port GPIO port
+@param pin GPIO pin number
+@param invert If true, the GPIO pin is pulled high for a reset and then stays low.
+*/
 void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert)
 {
     _rst_port = port;
@@ -11,11 +17,22 @@ void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin, bool invert)
     _rst_invert = invert;
 }
 
+/*
+Specify a GPIO pin connected to the BNO reset pin. This pin will be used for hardware resetting the sensor.
+@param port GPIO port
+@param pin GPIO pin number
+*/
 void BNO055::set_reset_pin(GPIO_TypeDef *port, uint16_t pin)
 {
     return set_reset_pin(port, pin, false);
 }
 
+/*
+Triggers a hardware reset by pulling the reset pin low for 100ms.
+After that the method blocks for 900ms to ensure the sensor has booted before sending commands.
+If the reset pin was not specified, the function returns immediately.
+If invert was set to true, the pin is pulled high and then stays low.
+*/
 void BNO055::hardware_reset()
 {
     if (_rst_port == nullptr)
@@ -29,21 +46,34 @@ void BNO055::hardware_reset()
     HAL_Delay(900);
 }
 
+/*
+Trigger a software reset by setting the RST_SYS bit in the SYS_TRIGGER register to 1
+*/
 void BNO055::software_reset()
 {
     return set_reg_bit(SYS_TRIGGER, 5, true);
 }
 
+/*
+Trigger a sensor self test by setting the Self_Test bit in the SYS_TRIGGER register to 1
+*/
 void BNO055::self_test()
 {
     return set_reg_bit(SYS_TRIGGER, 0, true);
 }
 
+/*
+Reset all system interrupt bits
+*/
 void BNO055::reset_interrupts()
 {
     return set_reg_bit(SYS_TRIGGER, 6, true);
 }
 
+/*
+Set the page id to switch between register pages.
+@param page Page id to switch to, 0 (false) or 1 (true)
+*/
 void BNO055::set_page_id(bool page)
 {
     if (_page == page)
@@ -54,47 +84,84 @@ void BNO055::set_page_id(bool page)
     write_page_id(page);
 }
 
+/*
+Write the page id to the register (0x07)
+@param page Page id to write, 0 (false) or 1 (true)
+*/
 void BNO055::write_page_id(bool page)
 {
     write_reg(PAGE_ID, page ? 1 : 0);
     _page = page;
 }
 
+/*
+Get the currently selected page id
+@return Current page id, 0 (false) or 1 (true)
+*/
 bool BNO055::get_page_id()
 {
     return _page;
 }
 
+/*
+Read the current page id from the register
+@return Current page id, 0 (false) or 1 (true)
+*/
 bool BNO055::read_page_id()
 {
     return (bool)read_reg(PAGE_ID);
 }
 
+/*
+Read the unique id of the BNO
+@return Unique id
+*/
 uint16_t BNO055::unique_id()
 {
     return read_reg(BNO_UNIQUE_ID);
 }
 
+/*
+Read the chip id of the BNO
+@return BNO chip id
+*/
 uint8_t BNO055::bno_chip_id()
 {
     return read_reg(CHIP_ID);
 }
 
+/*
+Read the chip id of the accelerometer
+@return Accelerometer chip id
+*/
 uint8_t BNO055::acc_chip_id()
 {
     return read_reg(ACC_ID);
 }
 
+/*
+Read the chip id of the magnetometer
+@return Magnetometer chip id
+*/
 uint8_t BNO055::mag_chip_id()
 {
     return read_reg(MAG_ID);
 }
 
+/*
+Read the chip id of the gyroscope
+@return Gyroscope chip id
+*/
 uint8_t BNO055::gyro_chip_id()
 {
     return read_reg(GYR_ID);
 }
 
+/*
+Set the system oscillator source (internal or external)
+@param clk_source Clock source , either INTERNAL or EXTERNAL
+@return True if change was successful, see the datasheet when clock source changes are allowed.
+*/
 bool BNO055::set_sys_clk(BNO_CLK_SOURCE clk_source)
 {
     if (!get_sys_clk_status())
@@ -105,6 +172,10 @@ bool BNO055::set_sys_clk(BNO_CLK_SOURCE clk_source)
     return set_reg_bit_checked(SYS_TRIGGER, 7, clk_source);
 }
 
+/*
+Get the system clock status
+@return False: Clock source free to configure, True: In configuration state
+*/
 bool BNO055::get_sys_clk_status()
 {
     return get_reg_bit(SYS_CLK_STAT, 0);
@@ -153,6 +224,10 @@ void BNO055::set_operation_mode(BNO_OPERATION_MODE mode)
     HAL_Delay(20);
 }
 
+/*
+Get the current BNO operation mode
+@return Current operation mode
+*/
 BNO_OPERATION_MODE BNO055::get_operation_mode()
 {
     return (BNO_OPERATION_MODE)read_reg(OPR_MODE);
@@ -167,11 +242,21 @@ void BNO055::set_power_mode(BNO_POWER_MODE mode)
     return write_reg(PWR_MODE, mode);
 }
 
+/*
+Get the current BNO power mode
+@return Current power mode
+*/
 BNO_POWER_MODE BNO055::get_power_mode()
 {
     return (BNO_POWER_MODE)read_reg(PWR_MODE);
 }
 
+/*
+Set the axis signs for axis inversion
+@param x X axis sign - False: no inversion, True: invert axis
+@param y Y axis sign - False: no inversion, True: invert axis
+@param z Z axis sign - False: no inversion, True: invert axis
+*/
 void BNO055::set_axis_sign_invert(bool x, bool y, bool z)
 {
     uint8_t raw = (x << 2) + (y << 1) + (uint8_t)z;
@@ -179,6 +264,10 @@ void BNO055::set_axis_sign_invert(bool x, bool y, bool z)
     return write_reg(AXIS_MAP_SIGN, raw);
 }
 
+/*
+Get the current axis sign bits.
+@return Axis sign byte (AXIS_MAP_SIGN) - b0: Z axis sign, b1: Y axis sign, b2: Z axis sign
+*/
 uint8_t BNO055::get_axis_sign_invert()
 {
     return read_reg(AXIS_MAP_SIGN);
@@ -202,16 +291,44 @@ uint8_t BNO055::get_system_error()
     return read_reg(SYS_ERR);
 }
 
+/*
+Get the interrupt status byte from register INT_STA (0x37).
+See the datasheet for all bits available.
+@return Interrupt status byte
+*/
 uint8_t BNO055::get_interrupt_status()
 {
     return read_reg(INT_STAT);
 }
 
+/*
+Get the selftest (st) result from register ST_RESULT (0x36)
+
+b0: Accelerometer st result;
+b1: Magnetometer st result;
+b2 GYroscope st result;
+b3 Microcontroller st result;
+
+1 indicates selftest success, 0 selftest failure
+
+@return Selftest result byte
+*/
 uint8_t BNO055::get_selftest_results()
 {
     return read_reg(ST_RESULT);
 }
 
+/*
+Get the calibration status byte from register CALIB_STAT (0x35)
+
+b[1..0]: MAG calib status;
+b[3..2]: ACC calib status;
+b[5..4]: GYR calib status;
+b[7..6]: SYS calib status;
+
+Both bits true indicates calibrated, both bits false indicates not calibrated
+@return Calibration status byte
+*/
 uint8_t BNO055::get_calib_status()
 {
     return read_reg(CALIB_STAT);
@@ -312,6 +429,10 @@ void BNO055::set_temperature_source(BNO_TEMP_SOURCE source)
     return set_reg_bit(TEMP_SOURCE, 0, source);
 }
 
+/*
+Get the current accelerometer data
+@return Accelerations for x, y, z in m/s^2 or mg depending on selected unit
+*/
 bno_vec_3_t BNO055::get_acceleration()
 {
     int16_t raw[3];
@@ -326,6 +447,10 @@ bno_vec_3_t BNO055::get_acceleration()
     return data;
 }
 
+/*
+Get the current linear acceleration data
+@return Linear accelerations for x, y, z in m/s^2 or mg depending on selected unit
+*/
 bno_vec_3_t BNO055::get_linear_acceleration()
 {
     int16_t raw[3];
@@ -340,6 +465,11 @@ bno_vec_3_t BNO055::get_linear_acceleration()
     return data;
 }
 
+/*
+Get the current fused euler angles.
+Fusion has to be enabled!
+@return Euler angles x, y, z (roll, pitch, yaw) from fusion algorithm in deg or rad depending on selected unit
+*/
 bno_vec_3_t BNO055::get_euler()
 {
     int16_t raw[3];
@@ -354,6 +484,10 @@ bno_vec_3_t BNO055::get_euler()
     return data;
 }
 
+/*
+Get the current magnetometer data
+@return Magnetometer data for x, y, z in micro tesla (uT)
+*/
 bno_vec_3_t BNO055::get_mag_data()
 {
     int16_t raw[3];
@@ -368,6 +502,10 @@ bno_vec_3_t BNO055::get_mag_data()
     return data;
 }
 
+/*
+Get the current gyroscope data
+@return Angular rotation rates for x, y, z in dps or rps depending on selected unit
+*/
 bno_vec_3_t BNO055::get_gyro_data()
 {
     int16_t raw[3];
@@ -382,6 +520,10 @@ bno_vec_3_t BNO055::get_gyro_data()
     return data;
 }
 
+/*
+Get the current gravity vector data
+@return Gravity vector x,y,z in m/s^2 or mg depending on selected unit
+*/
 bno_vec_3_t BNO055::get_gravity_vector()
 {
     int16_t raw[3];
@@ -396,6 +538,10 @@ bno_vec_3_t BNO055::get_gravity_vector()
     return data;
 }
 
+/*
+Get the current fused rotation quaternion
+@return Rotation unit quaternion
+*/
 bno_vec_4_t BNO055::get_quaternion_data()
 {
     int16_t raw[4];
