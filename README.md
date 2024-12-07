@@ -115,7 +115,8 @@ BNO_POWER_MODE   get_power_mode();                      // Get the current power
 ```
 ### Interrupts
 ```c++
-void reset_interrupts(); // Reset all interrupt status bits
+uint8_t get_interrupt_status();  // Get the interrupt status bits
+void reset_interrupts();         // Reset all interrupt status bits
 ```
 
 ### System Clock
