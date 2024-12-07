@@ -196,14 +196,14 @@ Get the linear acceleration for x, y and z axis.
 ```c++
 bno_vec_3_t get_linear_acceleration();
 ```
-:information_source: The unit is either `m/s^2` or `mg`, see Unit selection 
+:information_source: The unit is either `m/s^2` or `mg`, see Unit selection<br>
 :warning: Linear acceleration integration for velocity and position estimation is too inaccurate.
 #### Gravity vector
 Get the gravity vector estimation.
 ```c++
 bno_vec_3_t get_gravity_vector();
 ```
-:information_source: The unit is either `m/s^2` or `mg`, see Unit selection
+:information_source: The unit is either `m/s^2` or `mg`, see Unit selection<br>
 :warning: Only available in fusion mode
 #### Gyroscope data
 Get the gyroscope data (angular rate) for x, y and z axis.
@@ -222,12 +222,12 @@ Get the fused orientation as euler angles for each axis.
 ```c++
 bno_vec_3_t get_euler();
 ```
-:information_source: The unit is either `deg` or `rad`, see Unit selection
+:information_source: The unit is either `deg` or `rad`, see Unit selection<br>
 :warning: Only available in fusion mode
 #### Quaternion data
 Get the fused orientation as quaternion (w + jx + ky + lz)
 ```c++
 bno_vec_4_t get_quaternion_data();
 ```
-:information_source: Quaternions are unitless
+:information_source: Quaternions are unitless<br>
 :warning: Only available in fusion mode
