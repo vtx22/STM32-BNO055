@@ -361,6 +361,42 @@ uint8_t BNO055::get_calib_status()
 }
 
 /*
+Check if the magnetometer is calibrated
+@return true if calibrated, false if not calibrated
+*/
+bool BNO055::get_mag_calibrated()
+{
+    return ((get_calib_status() & BNO_MAG_CALIBRATED) == BNO_MAG_CALIBRATED);
+}
+
+/*
+Check if the accelerometer is calibrated
+@return true if calibrated, false if not calibrated
+*/
+bool BNO055::get_acc_calibrated()
+{
+    return ((get_calib_status() & BNO_ACC_CALIBRATED) == BNO_ACC_CALIBRATED);
+}
+
+/*
+Check if the gyroscope is calibrated
+@return true if calibrated, false if not calibrated
+*/
+bool BNO055::get_gyr_calibrated()
+{
+    return ((get_calib_status() & BNO_GYR_CALIBRATED) == BNO_GYR_CALIBRATED);
+}
+
+/*
+Check if the system is calibrated
+@return true if calibrated, false if not calibrated
+*/
+bool BNO055::get_sys_calibrated()
+{
+    return ((get_calib_status() & BNO_SYS_CALIBRATED) == BNO_SYS_CALIBRATED);
+}
+
+/*
 Set which interrupts to enable
 @param int_en_bits Interrupt enable bitmap, see BNO_INT_MASK
 */

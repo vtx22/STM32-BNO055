@@ -203,6 +203,15 @@ enum BNO_INT_MASK
     ACC_NM = (1 << 7),
 };
 
+enum BNO_CALIB_MASK
+{
+    BNO_MAG_CALIBRATED = (3 << 0),
+    BNO_ACC_CALIBRATED = (3 << 2),
+    BNO_GYR_CALIBRATED = (3 << 4),
+    BNO_SYS_CALIBRATED = (3 << 6),
+
+};
+
 struct BNO_UNIT_CONFIG
 {
     BNO_ORI_FORMAT ori = WINDOWS;
