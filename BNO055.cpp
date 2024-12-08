@@ -557,9 +557,10 @@ bno_vec_3_t BNO055::get_euler()
 
     bno_vec_3_t data;
 
-    data.x = (_unit_config.angle == DEG) ? raw[0] / 16.f : raw[0] / 900.f;
-    data.y = (_unit_config.angle == DEG) ? raw[1] / 16.f : raw[1] / 900.f;
-    data.z = (_unit_config.angle == DEG) ? raw[2] / 16.f : raw[2] / 900.f;
+    // Switch order to roll, pitch, yaw
+    data.x = (_unit_config.angle == DEG) ? raw[1] / 16.f : raw[1] / 900.f;
+    data.y = (_unit_config.angle == DEG) ? raw[2] / 16.f : raw[2] / 900.f;
+    data.z = (_unit_config.angle == DEG) ? raw[0] / 16.f : raw[0] / 900.f;
 
     return data;
 }
