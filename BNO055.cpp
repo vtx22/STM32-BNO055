@@ -666,6 +666,31 @@ bno_sensor_offsets_t BNO055::get_sensor_offsets()
     return offsets;
 }
 
+/*
+Set the sensor offsets. Only in CONFIGMODE!
+
+No unit conversion happens, data should be LSB!
+@param offsets Offsets struct
+*/
+void BNO055::set_sensor_offsets(const bno_sensor_offsets_t &offsets)
+{
+    int16_t off[3];
+    off[0] = offsets.accelerometer.x;
+    off[1] = offsets.accelerometer.y;
+    off[2] = offsets.accelerometer.z;
+    write_triple_reg(ACC_OFFSET, off);
+
+    off[0] = offsets.magnetometer.x;
+    off[1] = offsets.magnetometer.y;
+    off[2] = offsets.magnetometer.z;
+    write_triple_reg(MAG_OFFSET, off);
+
+    off[0] = offsets.gyroscope.x;
+    off[1] = offsets.gyroscope.y;
+    off[2] = offsets.gyroscope.z;
+    write_triple_reg(GYR_OFFSET, off);
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);
