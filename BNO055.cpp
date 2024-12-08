@@ -710,9 +710,13 @@ void BNO055::read_triple_reg(const bno_reg_t &reg, int16_t *data)
 
     read_i2c_bytes(_hi2c, _address, reg.address, raw, 6);
 
-    data[0] = (raw[1] << 8) + raw[0];
-    data[1] = (raw[3] << 8) + raw[2];
-    data[2] = (raw[5] << 8) + raw[4];
+    uint16_t raw_1 = (raw[1] << 8) + raw[0];
+    uint16_t raw_2 = (raw[3] << 8) + raw[2];
+    uint16_t raw_3 = (raw[5] << 8) + raw[4];
+
+    data[0] = *(int16_t *)&raw_1;
+    data[1] = *(int16_t *)&raw_2;
+    data[2] = *(int16_t *)&raw_3;
 }
 
 void BNO055::write_triple_reg(const bno_reg_t &reg, const int16_t *data)
@@ -736,10 +740,15 @@ void BNO055::read_quad_reg(const bno_reg_t &reg, int16_t *data)
 
     read_i2c_bytes(_hi2c, _address, reg.address, raw, 8);
 
-    data[0] = (raw[1] << 8) + raw[0];
-    data[1] = (raw[3] << 8) + raw[2];
-    data[2] = (raw[5] << 8) + raw[4];
-    data[3] = (raw[7] << 8) + raw[6];
+    uint16_t raw_1 = (raw[1] << 8) + raw[0];
+    uint16_t raw_2 = (raw[3] << 8) + raw[2];
+    uint16_t raw_3 = (raw[5] << 8) + raw[4];
+    uint16_t raw_4 = (raw[7] << 8) + raw[6];
+
+    data[0] = *(int16_t *)&raw_1;
+    data[1] = *(int16_t *)&raw_2;
+    data[2] = *(int16_t *)&raw_3;
+    data[3] = *(int16_t *)&raw_4;
 }
 
 void BNO055::write_reg(const bno_reg_t &reg, uint16_t value)
