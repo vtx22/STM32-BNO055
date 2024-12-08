@@ -68,10 +68,10 @@ public:
     uint8_t get_selftest_results();
     uint8_t get_calib_status();
 
-    bool get_mag_calibrated();
-    bool get_acc_calibrated();
-    bool get_gyr_calibrated();
-    bool get_sys_calibrated();
+    uint8_t get_mag_calibrated();
+    uint8_t get_acc_calibrated();
+    uint8_t get_gyr_calibrated();
+    uint8_t get_sys_calibrated();
 
     void set_interrupt_enable(uint8_t int_en_bits);
     void set_interrupt_mask(uint8_t int_msk_bits);

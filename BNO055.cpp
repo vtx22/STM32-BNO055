@@ -362,38 +362,38 @@ uint8_t BNO055::get_calib_status()
 
 /*
 Check if the magnetometer is calibrated
-@return true if calibrated, false if not calibrated
+@return Calib status from 0 - 3 where 0 means not calibrated and 3 means fully calibrated
 */
-bool BNO055::get_mag_calibrated()
+uint8_t BNO055::get_mag_calibrated()
 {
-    return ((get_calib_status() & BNO_MAG_CALIBRATED) == BNO_MAG_CALIBRATED);
+    return (get_calib_status() & BNO_MAG_CALIBRATED);
 }
 
 /*
 Check if the accelerometer is calibrated
-@return true if calibrated, false if not calibrated
+@return Calib status from 0 - 3 where 0 means not calibrated and 3 means fully calibrated
 */
-bool BNO055::get_acc_calibrated()
+uint8_t BNO055::get_acc_calibrated()
 {
-    return ((get_calib_status() & BNO_ACC_CALIBRATED) == BNO_ACC_CALIBRATED);
+    return ((get_calib_status() & BNO_ACC_CALIBRATED) >> 2);
 }
 
 /*
 Check if the gyroscope is calibrated
-@return true if calibrated, false if not calibrated
+@return Calib status from 0 - 3 where 0 means not calibrated and 3 means fully calibrated
 */
-bool BNO055::get_gyr_calibrated()
+uint8_t BNO055::get_gyr_calibrated()
 {
-    return ((get_calib_status() & BNO_GYR_CALIBRATED) == BNO_GYR_CALIBRATED);
+    return ((get_calib_status() & BNO_GYR_CALIBRATED) >> 4);
 }
 
 /*
 Check if the system is calibrated
-@return true if calibrated, false if not calibrated
+@return Calib status from 0 - 3 where 0 means not calibrated and 3 means fully calibrated
 */
-bool BNO055::get_sys_calibrated()
+uint8_t BNO055::get_sys_calibrated()
 {
-    return ((get_calib_status() & BNO_SYS_CALIBRATED) == BNO_SYS_CALIBRATED);
+    return ((get_calib_status() & BNO_SYS_CALIBRATED) >> 6);
 }
 
 /*
