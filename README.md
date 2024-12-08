@@ -122,6 +122,14 @@ BNO_POWER_MODE   get_power_mode();                      // Get the current power
 ```c++
 uint8_t get_calib_status();   // Get the sensor calibration status
 ```
+Check individual sensor calibration status:
+```c++
+bool get_mag_calibrated();    // true if calibrated, otherwise false
+bool get_acc_calibrated();    // true if calibrated, otherwise false
+bool get_gyr_calibrated();    // true if calibrated, otherwise false
+bool get_sys_calibrated();    // true if calibrated, otherwise false
+```
+
 ---
 ### Interrupts
 #### Interrupt Enable
