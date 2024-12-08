@@ -637,6 +637,35 @@ bno_vec_4_t BNO055::get_quaternion_data()
     return data;
 }
 
+/*
+Get the current sensor offsets
+
+No unit conversion happens, data is in LSB!
+@return struct containing the current offsets for all three sensors
+*/
+bno_sensor_offsets_t BNO055::get_sensor_offsets()
+{
+    // Should be combined into a single request in the future
+    int16_t off[9];
+    read_triple_reg(ACC_OFFSET, off);
+    read_triple_reg(MAG_OFFSET, off + 3);
+    read_triple_reg(GYR_OFFSET, off + 6);
+
+    bno_sensor_offsets_t offsets;
+
+    offsets.accelerometer.x = off[0];
+    offsets.accelerometer.y = off[1];
+    offsets.accelerometer.z = off[2];
+    offsets.magnetometer.x = off[3];
+    offsets.magnetometer.y = off[4];
+    offsets.magnetometer.z = off[5];
+    offsets.gyroscope.x = off[6];
+    offsets.gyroscope.y = off[7];
+    offsets.gyroscope.z = off[8];
+
+    return offsets;
+}
+
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
 {
     set_page_id(reg.page);

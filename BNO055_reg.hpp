@@ -230,3 +230,15 @@ struct bno_vec_4_t
 {
     float w, x, y, z;
 };
+
+struct bno_vec_3i16_t
+{
+    int16_t x, y, z;
+};
+
+struct bno_sensor_offsets_t
+{
+    bno_vec_3i16_t accelerometer;
+    bno_vec_3i16_t magnetometer;
+    bno_vec_3i16_t gyroscope;
+};

@@ -97,6 +97,7 @@ public:
 
     bno_vec_4_t get_quaternion_data();
 
+    bno_sensor_offsets_t get_sensor_offsets();
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
