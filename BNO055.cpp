@@ -631,9 +631,9 @@ bno_vec_4_t BNO055::get_quaternion_data()
     bno_vec_4_t data;
 
     data.w = raw[0] / (float)(2 << 13);
-    data.x = raw[0] / (float)(2 << 13);
-    data.y = raw[1] / (float)(2 << 13);
-    data.z = raw[2] / (float)(2 << 13);
+    data.x = raw[1] / (float)(2 << 13);
+    data.y = raw[2] / (float)(2 << 13);
+    data.z = raw[3] / (float)(2 << 13);
 
     return data;
 }
