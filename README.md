@@ -124,10 +124,10 @@ uint8_t get_calib_status();   // Get the sensor calibration status
 ```
 Check individual sensor calibration status:
 ```c++
-bool get_mag_calibrated();    // true if calibrated, otherwise false
-bool get_acc_calibrated();    // true if calibrated, otherwise false
-bool get_gyr_calibrated();    // true if calibrated, otherwise false
-bool get_sys_calibrated();    // true if calibrated, otherwise false
+uint8_t get_mag_calibrated();    // calibration state, 0 - 3 where 3 means fully calibrated
+uint8_t get_acc_calibrated();    // calibration state, 0 - 3 where 3 means fully calibrated
+uint8_t get_gyr_calibrated();    // calibration state, 0 - 3 where 3 means fully calibrated
+uint8_t get_sys_calibrated();    // calibration state, 0 - 3 where 3 means fully calibrated
 ```
 
 ---
