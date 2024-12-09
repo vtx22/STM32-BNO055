@@ -668,6 +668,25 @@ bno_sensor_offsets_t BNO055::get_sensor_offsets()
 }
 
 /*
+Get the current calibration data. Includes all offsets, magnetometer radius and accelerometer radius.
+@return Current calibration data as struct
+*/
+bno_sensor_calibration_t BNO055::get_calibration_data()
+{
+    bno_sensor_calibration_t calib;
+
+    // Should be a single access for all bytes
+    calib.offsets = get_sensor_offsets();
+
+    uint16_t acc_radius = read_reg(ACC_RADIUS);
+    uint16_t mag_radius = read_reg(MAG_RADIUS);
+    calib.acc_radius = *(int16_t *)&acc_radius;
+    calib.mag_radius = *(int16_t *)&mag_radius;
+
+    return calib;
+}
+
+/*
 Set the sensor offsets. Only in CONFIGMODE!
 
 No unit conversion happens, data should be LSB!

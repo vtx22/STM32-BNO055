@@ -100,6 +100,7 @@ public:
     bno_sensor_offsets_t get_sensor_offsets();
     void set_sensor_offsets(const bno_sensor_offsets_t &offsets);
 
+    bno_sensor_calibration_t get_calibration_data();
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
