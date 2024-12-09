@@ -701,7 +701,10 @@ uint16_t BNO055::read_reg(const bno_reg_t &reg)
         return read_i2c_reg_8(_hi2c, _address, reg.address);
     }
 
-    return read_i2c_reg_16(_hi2c, _address, reg.address);
+    uint16_t raw = read_i2c_reg_16(_hi2c, _address, reg.address);
+
+    // Swap byte order because BNO stores LSB first
+    return ((raw >> 8) + (raw << 8));
 }
 
 void BNO055::read_triple_reg(const bno_reg_t &reg, int16_t *data)
