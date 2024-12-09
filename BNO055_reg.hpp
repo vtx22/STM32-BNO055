@@ -242,3 +242,9 @@ struct bno_sensor_offsets_t
     bno_vec_3i16_t magnetometer;
     bno_vec_3i16_t gyroscope;
 };
+
+struct bno_sensor_calibration_t
+{
+    int16_t mag_radius, acc_radius;
+    bno_sensor_offsets_t offsets;
+};
