@@ -18,8 +18,7 @@ bno.reset();
 // Perform your configurations here while the sensor is in CONFIGMODE
 // [...]
 
-// Start the sensor, configurations are now disabled 
-bno.set_power_mode(NORMAL);
+// Start the sensor in full fusion mode, configurations are now disabled
 bno.set_operation_mode(NDOF);
 
 // Simple loop to read fused angle data every 100ms
