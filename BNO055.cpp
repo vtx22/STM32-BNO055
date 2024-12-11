@@ -183,7 +183,7 @@ bool BNO055::set_sys_clk(BNO_CLK_SOURCE clk_source)
         return false;
     }
 
-    return set_reg_bit_checked(SYS_TRIGGER, 7, clk_source);
+    return set_reg_bit_checked(SYS_TRIGGER, 7, (bool)clk_source);
 }
 
 /*
@@ -225,7 +225,7 @@ int16_t BNO055::temperature()
 {
     int16_t temp = read_reg(BNO_TEMP);
 
-    return (_unit_config.temp == CELSIUS) ? temp : temp * 2;
+    return (_unit_config.temp == BNO_TEMP_UNIT::CELSIUS) ? temp : temp * 2;
 }
 
 /*
@@ -234,7 +234,7 @@ Set the BNO operation mode
 */
 void BNO055::set_operation_mode(BNO_OPERATION_MODE mode)
 {
-    write_reg(OPR_MODE, mode);
+    write_reg(OPR_MODE, (uint16_t)mode);
     HAL_Delay(20);
 }
 
@@ -253,7 +253,7 @@ Set the BNO power mode
 */
 void BNO055::set_power_mode(BNO_POWER_MODE mode)
 {
-    return write_reg(PWR_MODE, mode);
+    return write_reg(PWR_MODE, (uint16_t)mode);
 }
 
 /*
@@ -295,7 +295,7 @@ Remap BNO axes
 */
 void BNO055::set_axis_remap(BNO_AXIS new_x, BNO_AXIS new_y, BNO_AXIS new_z)
 {
-    uint8_t raw = (new_z << 4) + (new_y << 2) + new_x;
+    uint8_t raw = ((uint8_t)new_z << 4) + ((uint8_t)new_y << 2) + (uint8_t)new_x;
     return write_reg(AXIS_MAP_CONFIG, raw);
 }
 
@@ -366,7 +366,7 @@ Check if the magnetometer is calibrated
 */
 uint8_t BNO055::get_mag_calibrated()
 {
-    return (get_calib_status() & BNO_MAG_CALIBRATED);
+    return (get_calib_status() & (uint8_t)BNO_CALIB_MASK::BNO_MAG_CALIBRATED);
 }
 
 /*
@@ -375,7 +375,7 @@ Check if the accelerometer is calibrated
 */
 uint8_t BNO055::get_acc_calibrated()
 {
-    return ((get_calib_status() & BNO_ACC_CALIBRATED) >> 2);
+    return ((get_calib_status() & (uint8_t)BNO_CALIB_MASK::BNO_ACC_CALIBRATED) >> 2);
 }
 
 /*
@@ -384,7 +384,7 @@ Check if the gyroscope is calibrated
 */
 uint8_t BNO055::get_gyr_calibrated()
 {
-    return ((get_calib_status() & BNO_GYR_CALIBRATED) >> 4);
+    return ((get_calib_status() & (uint8_t)BNO_CALIB_MASK::BNO_GYR_CALIBRATED) >> 4);
 }
 
 /*
@@ -393,7 +393,7 @@ Check if the system is calibrated
 */
 uint8_t BNO055::get_sys_calibrated()
 {
-    return ((get_calib_status() & BNO_SYS_CALIBRATED) >> 6);
+    return ((get_calib_status() & (uint8_t)BNO_CALIB_MASK::BNO_SYS_CALIBRATED) >> 6);
 }
 
 /*
@@ -422,7 +422,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 void BNO055::set_orientation_format(BNO_ORI_FORMAT format)
 {
-    return set_reg_bit(UNIT_SEL, 7, format);
+    return set_reg_bit(UNIT_SEL, 7, (bool)format);
 }
 
 /*
@@ -434,7 +434,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_acceleration_unit(BNO_ACC_UNIT unit)
 {
-    if (set_reg_bit_checked(UNIT_SEL, 0, unit))
+    if (set_reg_bit_checked(UNIT_SEL, 0, (bool)unit))
     {
         _unit_config.acc = unit;
         return true;
@@ -452,7 +452,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_angular_rate_unit(BNO_ANG_RATE_UNIT unit)
 {
-    if (set_reg_bit_checked(UNIT_SEL, 1, unit))
+    if (set_reg_bit_checked(UNIT_SEL, 1, (bool)unit))
     {
         _unit_config.angle_rate = unit;
         return true;
@@ -470,7 +470,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_angle_unit(BNO_ANG_UNIT unit)
 {
-    if (set_reg_bit_checked(UNIT_SEL, 2, unit))
+    if (set_reg_bit_checked(UNIT_SEL, 2, (bool)unit))
     {
         _unit_config.angle = unit;
         return true;
@@ -488,7 +488,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 bool BNO055::set_temperature_unit(BNO_TEMP_UNIT unit)
 {
-    if (set_reg_bit_checked(UNIT_SEL, 4, unit))
+    if (set_reg_bit_checked(UNIT_SEL, 4, (bool)unit))
     {
         _unit_config.temp = unit;
         return true;
@@ -506,7 +506,7 @@ Note: Changes only take effect when the sensor is in CONFIGMODE
 */
 void BNO055::set_temperature_source(BNO_TEMP_SOURCE source)
 {
-    return set_reg_bit(TEMP_SOURCE, 0, source);
+    return set_reg_bit(TEMP_SOURCE, 0, (bool)source);
 }
 
 /*
@@ -520,9 +520,10 @@ bno_vec_3_t BNO055::get_acceleration()
 
     bno_vec_3_t data;
 
-    data.x = (_unit_config.acc == MILLI_G) ? raw[0] : raw[0] / 100.f;
-    data.y = (_unit_config.acc == MILLI_G) ? raw[1] : raw[1] / 100.f;
-    data.z = (_unit_config.acc == MILLI_G) ? raw[2] : raw[2] / 100.f;
+    bool unit = (_unit_config.acc == BNO_ACC_UNIT::MILLI_G);
+    data.x = unit ? raw[0] : raw[0] / 100.f;
+    data.y = unit ? raw[1] : raw[1] / 100.f;
+    data.z = unit ? raw[2] : raw[2] / 100.f;
 
     return data;
 }
@@ -537,10 +538,10 @@ bno_vec_3_t BNO055::get_linear_acceleration()
     read_triple_reg(LIA_DATA, raw);
 
     bno_vec_3_t data;
-
-    data.x = (_unit_config.acc == MILLI_G) ? raw[0] : raw[0] / 100.f;
-    data.y = (_unit_config.acc == MILLI_G) ? raw[1] : raw[1] / 100.f;
-    data.z = (_unit_config.acc == MILLI_G) ? raw[2] : raw[2] / 100.f;
+    bool unit = (_unit_config.acc == BNO_ACC_UNIT::MILLI_G);
+    data.x = unit ? raw[0] : raw[0] / 100.f;
+    data.y = unit ? raw[1] : raw[1] / 100.f;
+    data.z = unit ? raw[2] : raw[2] / 100.f;
 
     return data;
 }
@@ -558,9 +559,10 @@ bno_vec_3_t BNO055::get_euler()
     bno_vec_3_t data;
 
     // Switch order to roll, pitch, yaw
-    data.x = (_unit_config.angle == DEG) ? raw[1] / 16.f : raw[1] / 900.f;
-    data.y = (_unit_config.angle == DEG) ? raw[2] / 16.f : raw[2] / 900.f;
-    data.z = (_unit_config.angle == DEG) ? raw[0] / 16.f : raw[0] / 900.f;
+    bool unit = (_unit_config.angle == BNO_ANG_UNIT::DEG);
+    data.x = unit ? raw[1] / 16.f : raw[1] / 900.f;
+    data.y = unit ? raw[2] / 16.f : raw[2] / 900.f;
+    data.z = unit ? raw[0] / 16.f : raw[0] / 900.f;
 
     return data;
 }
@@ -594,9 +596,10 @@ bno_vec_3_t BNO055::get_gyro_data()
 
     bno_vec_3_t data;
 
-    data.x = (_unit_config.angle_rate == DEG_PER_SECOND) ? raw[0] / 16.f : raw[0] / 900.f;
-    data.y = (_unit_config.angle_rate == DEG_PER_SECOND) ? raw[1] / 16.f : raw[1] / 900.f;
-    data.z = (_unit_config.angle_rate == DEG_PER_SECOND) ? raw[2] / 16.f : raw[2] / 900.f;
+    bool unit = (_unit_config.angle_rate == BNO_ANG_RATE_UNIT::DEG_PER_SECOND);
+    data.x = unit ? raw[0] / 16.f : raw[0] / 900.f;
+    data.y = unit ? raw[1] / 16.f : raw[1] / 900.f;
+    data.z = unit ? raw[2] / 16.f : raw[2] / 900.f;
 
     return data;
 }
@@ -612,9 +615,10 @@ bno_vec_3_t BNO055::get_gravity_vector()
 
     bno_vec_3_t data;
 
-    data.x = (_unit_config.acc == MILLI_G) ? raw[0] : raw[0] / 100.f;
-    data.y = (_unit_config.acc == MILLI_G) ? raw[1] : raw[1] / 100.f;
-    data.z = (_unit_config.acc == MILLI_G) ? raw[2] : raw[2] / 100.f;
+    bool unit = (_unit_config.acc == BNO_ACC_UNIT::MILLI_G);
+    data.x = unit ? raw[0] : raw[0] / 100.f;
+    data.y = unit ? raw[1] : raw[1] / 100.f;
+    data.z = unit ? raw[2] : raw[2] / 100.f;
 
     return data;
 }

@@ -118,7 +118,7 @@ constexpr bno_reg_t GYR_AM_THRES = {0x1E, 1, 1};
 constexpr bno_reg_t GYR_AM_SET = {0x1F, 1, 1};
 constexpr bno_reg_t BNO_UNIQUE_ID = {0x50, 2, 1};
 
-enum BNO_OPERATION_MODE
+enum class BNO_OPERATION_MODE
 {
     CONFIGMODE,
     ACC_ONLY,
@@ -135,63 +135,63 @@ enum BNO_OPERATION_MODE
     NDOF,
 };
 
-enum BNO_POWER_MODE
+enum class BNO_POWER_MODE
 {
     NORMAL,
     LOW_POWER,
     SUSPEND,
 };
 
-enum BNO_ORI_FORMAT
+enum class BNO_ORI_FORMAT
 {
     WINDOWS,
     ANDROID,
 };
 
-enum BNO_TEMP_UNIT
+enum class BNO_TEMP_UNIT
 {
     CELSIUS,
     FAHRENHEIT,
 };
 
-enum BNO_ACC_UNIT
+enum class BNO_ACC_UNIT
 {
     METERS_PER_SECOND2,
     MILLI_G,
 };
 
-enum BNO_ANG_RATE_UNIT
+enum class BNO_ANG_RATE_UNIT
 {
     DEG_PER_SECOND,
     RAD_PER_SECOND,
 };
 
-enum BNO_ANG_UNIT
+enum class BNO_ANG_UNIT
 {
     DEG,
     RAD,
 };
 
-enum BNO_TEMP_SOURCE
+enum class BNO_TEMP_SOURCE
 {
     TEMP_ACCELEROMETER,
     TEMP_GYROSCOPE,
 };
 
-enum BNO_CLK_SOURCE
+enum class BNO_CLK_SOURCE
 {
     INTERNAL,
     EXTERNAL,
 };
 
-enum BNO_AXIS
+enum class BNO_AXIS
 {
     BNO_X_AXIS,
     BNO_Y_AXIS,
     BNO_Z_AXIS,
 };
 
-enum BNO_INT_MASK
+enum class BNO_INT_MASK
 {
     ACC_BSX_DRDY = (1 << 0),
     MAG_DRDY = (1 << 1),
@@ -203,7 +203,7 @@ enum BNO_INT_MASK
     ACC_NM = (1 << 7),
 };
 
-enum BNO_CALIB_MASK
+enum class BNO_CALIB_MASK
 {
     BNO_MAG_CALIBRATED = (3 << 0),
     BNO_ACC_CALIBRATED = (3 << 2),
@@ -214,11 +214,11 @@ enum BNO_CALIB_MASK
 
 struct BNO_UNIT_CONFIG
 {
-    BNO_ORI_FORMAT ori = WINDOWS;
-    BNO_TEMP_UNIT temp = CELSIUS;
-    BNO_ACC_UNIT acc = METERS_PER_SECOND2;
-    BNO_ANG_UNIT angle = DEG;
-    BNO_ANG_RATE_UNIT angle_rate = DEG_PER_SECOND;
+    BNO_ORI_FORMAT ori = BNO_ORI_FORMAT::WINDOWS;
+    BNO_TEMP_UNIT temp = BNO_TEMP_UNIT::CELSIUS;
+    BNO_ACC_UNIT acc = BNO_ACC_UNIT::METERS_PER_SECOND2;
+    BNO_ANG_UNIT angle = BNO_ANG_UNIT::DEG;
+    BNO_ANG_RATE_UNIT angle_rate = BNO_ANG_RATE_UNIT::DEG_PER_SECOND;
 };
 
 struct bno_vec_3_t
