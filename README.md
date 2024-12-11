@@ -19,7 +19,7 @@ bno.reset();
 // [...]
 
 // Start the sensor in full fusion mode, configurations are now disabled
-bno.set_operation_mode(NDOF);
+bno.set_operation_mode(BNO_OPERATION_MODE::NDOF);
 
 // Simple loop to read fused angle data every 100ms
 while(true)
