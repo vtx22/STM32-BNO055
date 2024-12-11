@@ -119,7 +119,7 @@ BNO_POWER_MODE   get_power_mode();                      // Get the current power
 ---
 ### Sensor calibration
 ```c++
-uint8_t get_calib_status();   // Get the sensor calibration status
+uint8_t get_calib_status();      // Get the sensor calibration status, 0xFF means fully calibrated
 ```
 Check individual sensor calibration status:
 ```c++
