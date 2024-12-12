@@ -89,8 +89,8 @@ constexpr bno_reg_t GYR_OFFSET_X = {0x61, 2, 0};
 constexpr bno_reg_t GYR_OFFSET_Y = {0x63, 2, 0};
 constexpr bno_reg_t GYR_OFFSET_Z = {0x65, 2, 0};
 
-constexpr bno_reg_t ACC_RADIUS = {0x68, 2, 0};
-constexpr bno_reg_t MAG_RADIUS = {0x6A, 2, 0};
+constexpr bno_reg_t ACC_RADIUS = {0x67, 2, 0};
+constexpr bno_reg_t MAG_RADIUS = {0x69, 2, 0};
 
 // PAGE 1 Registers
 constexpr bno_reg_t ACC_CONFIG = {0x08, 1, 1};
