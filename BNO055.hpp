@@ -101,6 +101,8 @@ public:
     void set_sensor_offsets(const bno_sensor_offsets_t &offsets);
 
     bno_sensor_calibration_t get_calibration_data();
+    void set_calibration_data(const bno_sensor_calibration_t &calib_data);
+
 private:
     void set_page_id(bool page);
     void write_page_id(bool page);
