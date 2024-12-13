@@ -109,7 +109,6 @@ private:
 
     uint16_t read_reg(const bno_reg_t &reg);
     void read_triple_reg(const bno_reg_t &reg, int16_t *data);
-    void write_triple_reg(const bno_reg_t &reg, const int16_t *data);
     void read_quad_reg(const bno_reg_t &reg, int16_t *data);
     void write_reg(const bno_reg_t &reg, uint16_t value);
     void set_reg_bit(const bno_reg_t &reg, uint8_t n, bool value);
