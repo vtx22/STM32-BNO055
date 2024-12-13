@@ -741,7 +741,8 @@ void BNO055::write_reg(const bno_reg_t &reg, uint16_t value)
         return write_i2c_reg_8(_hi2c, _address, reg.address, (uint8_t)value);
     }
 
-    return write_i2c_reg_16(_hi2c, _address, reg.address, value);
+    write_i2c_reg_8(_hi2c, _address, reg.address, (value & 0xFF));
+    write_i2c_reg_8(_hi2c, _address, reg.address + 1, (value >> 8));
 }
 
 void BNO055::set_reg_bit(const bno_reg_t &reg, uint8_t n, bool value)
