@@ -648,15 +648,24 @@ Get the current calibration data. Includes all offsets, magnetometer radius and 
 */
 bno_sensor_calibration_t BNO055::get_calibration_data()
 {
+    set_page_id(ACC_OFFSET.page);
+
+    int16_t off[11];
+
+    read_i2c_bytes(_hi2c, _address, ACC_OFFSET.address, (uint8_t *)off, 22);
+
     bno_sensor_calibration_t calib;
-
-    // Should be a single access for all bytes
-    calib.offsets = get_sensor_offsets();
-
-    uint16_t acc_radius = read_reg(ACC_RADIUS);
-    uint16_t mag_radius = read_reg(MAG_RADIUS);
-    calib.acc_radius = *(int16_t *)&acc_radius;
-    calib.mag_radius = *(int16_t *)&mag_radius;
+    calib.offsets.accelerometer.x = off[0];
+    calib.offsets.accelerometer.y = off[1];
+    calib.offsets.accelerometer.z = off[2];
+    calib.offsets.magnetometer.x = off[3];
+    calib.offsets.magnetometer.y = off[4];
+    calib.offsets.magnetometer.z = off[5];
+    calib.offsets.gyroscope.x = off[6];
+    calib.offsets.gyroscope.y = off[7];
+    calib.offsets.gyroscope.z = off[8];
+    calib.acc_radius = off[9];
+    calib.mag_radius = off[10];
 
     return calib;
 }
