@@ -672,9 +672,41 @@ bno_sensor_calibration_t BNO055::get_calibration_data()
 
 void BNO055::set_calibration_data(const bno_sensor_calibration_t &calib_data)
 {
-    set_sensor_offsets(calib_data.offsets);
-    write_reg(ACC_RADIUS, calib_data.acc_radius);
-    write_reg(MAG_RADIUS, calib_data.mag_radius);
+    set_page_id(ACC_OFFSET.page);
+
+    bno_vec_3i16_t acc_off = calib_data.offsets.accelerometer;
+    bno_vec_3i16_t mag_off = calib_data.offsets.magnetometer;
+    bno_vec_3i16_t gyr_off = calib_data.offsets.gyroscope;
+
+    uint8_t buf[22];
+    buf[1] = (acc_off.x >> 8);
+    buf[0] = (acc_off.x & 0xFF);
+    buf[3] = (acc_off.y >> 8);
+    buf[2] = (acc_off.y & 0xFF);
+    buf[5] = (acc_off.z >> 8);
+    buf[4] = (acc_off.z & 0xFF);
+    buf[7] = (mag_off.x >> 8);
+    buf[6] = (mag_off.x & 0xFF);
+    buf[9] = (mag_off.y >> 8);
+    buf[8] = (mag_off.y & 0xFF);
+    buf[11] = (mag_off.z >> 8);
+    buf[10] = (mag_off.z & 0xFF);
+    buf[13] = (gyr_off.x >> 8);
+    buf[12] = (gyr_off.x & 0xFF);
+    buf[15] = (gyr_off.y >> 8);
+    buf[14] = (gyr_off.y & 0xFF);
+    buf[17] = (gyr_off.z >> 8);
+    buf[16] = (gyr_off.z & 0xFF);
+    buf[19] = (calib_data.acc_radius >> 8);
+    buf[18] = (calib_data.acc_radius & 0xFF);
+    buf[21] = (calib_data.mag_radius >> 8);
+    buf[20] = (calib_data.mag_radius & 0xFF);
+
+    uint8_t reg_add = ACC_OFFSET.address;
+    for (uint8_t i = 0; i < 22; i++)
+    {
+        write_i2c_reg_8(_hi2c, _address, reg_add++, buf[i]);
+    }
 }
 
 uint16_t BNO055::read_reg(const bno_reg_t &reg)
