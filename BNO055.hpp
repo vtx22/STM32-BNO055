@@ -97,9 +97,6 @@ public:
 
     bno_vec_4_t get_quaternion_data();
 
-    bno_sensor_offsets_t get_sensor_offsets();
-    void set_sensor_offsets(const bno_sensor_offsets_t &offsets);
-
     bno_sensor_calibration_t get_calibration_data();
     void set_calibration_data(const bno_sensor_calibration_t &calib_data);
 
