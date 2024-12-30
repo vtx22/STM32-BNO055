@@ -30,7 +30,7 @@ while(true)
 ```
 
 ### Build
-Copy the `BNO055.cpp`, `BNO55.hpp`, `I2C.cpp` and `I2C.hpp` to your source and include directory.
+Copy the `BNO055.cpp`, `BNO55.hpp`, `BNO55_reg.hpp`, `I2C.cpp` and `I2C.hpp` to your source and include directory.
 
 To build, specify a build flag for your STM32 MCU. For a STM32F1XXX for example, use `-D STM32F1`.
 
