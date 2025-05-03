@@ -560,8 +560,8 @@ bno_vec_3_t BNO055::get_euler()
 
     // Switch order to roll, pitch, yaw
     bool unit = (_unit_config.angle == BNO_ANG_UNIT::DEG);
-    data.x = unit ? raw[1] / 16.f : raw[1] / 900.f;
-    data.y = unit ? raw[2] / 16.f : raw[2] / 900.f;
+    data.x = unit ? raw[2] / 16.f : raw[2] / 900.f;
+    data.y = unit ? raw[1] / 16.f : raw[1] / 900.f;
     data.z = unit ? raw[0] / 16.f : raw[0] / 900.f;
 
     return data;
